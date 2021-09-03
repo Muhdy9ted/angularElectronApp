@@ -1,23 +1,33 @@
 {
   "name": "gigworks-desktop",
   "version": "0.0.0",
+  "main": "main.js",
+  "author": "Abdullahi Muhammed",
+  "description": "gigworks time-tracker",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron": "electron ."
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.1.0",
+    "@angular/cdk": "^12.2.4",
     "@angular/common": "~12.1.0",
     "@angular/compiler": "~12.1.0",
     "@angular/core": "~12.1.0",
+    "@angular/fire": "^7.0.3",
     "@angular/forms": "~12.1.0",
+    "@angular/material": "^12.2.4",
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
+    "bootstrap": "^5.1.0",
+    "electron": "^14.0.0",
+    "firebase": "^9.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
