@@ -1,6 +1,56 @@
-<h1>Hello world</h1>
-<p>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-</p>
+<div class="container-fluid wrapper">
+    <div class="row">
+        <div class="col-12">
+            <mat-card class="login-card">
+                <img src="assets/logos/gigwork-logo.svg" class="logo" /><span class="logo-text">Gigworks</span>
+                <div class="form-content m-0 p-0">
+                    <img src="assets/logos/gigwork-logo-long.svg" class="logo-long" />
+                    <mat-card-content class="card-content">
+                        <form [formGroup]="loginForm">
+                            <!-- <mat-error *ngIf="!loginForm.valid && loginForm.touched">{{getErrorMessage()}}</mat-error> -->
+                            <mat-form-field appearance="outline" class="input-wrapper">
+                                <mat-label class="login-form-label">Email</mat-label>
+                                <input matInput placeholder="Email" required formControlName="email">
+                                <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">enter an email address</mat-error>
+                                <mat-error *ngIf="loginForm.get('email')?.hasError('isBlacklistEmail')">this email has been blacklisted</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-wrapper password-bottom-clear" [ngClass]="{'password-bottom': loginForm.get('password')?.errors && loginForm.get('password')?.touched}">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" required formControlName="password">
+                                <button [ngStyle]="{border: 'none', backgroundColor: 'white'}" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">enter a password, atleast 5 characters long</mat-error>
+                                <mat-error *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">enter a password, atleast 5 characters length</mat-error>
+                            </mat-form-field> 
+                            <mat-checkbox class="checkbox" formControlName="rememberMe">Remember Me</mat-checkbox>
+                        </form>
+                    </mat-card-content>
+                    <mat-card-actions class="card-action">
+                        <div class="button-section">
+                            <button mat-raised-button color="primary" class="button email-login" (click)="onSubmit()">Login</button>
+                            <div class="hr-div">
+                                <hr class="hr" />
+                                <p class="hr-text">OR</p>
+                            </div>
+                            <button mat-raised-button class="button facebook-login" (click)="onSubmit()"> 
+                                <mat-icon aria-hidden="false" aria-label="home icon" class="button-icon">facebook</mat-icon>
+                                <span>Continue with <span [ngStyle]="{fontWeight: '600'}">Facebook</span></span>
+                            </button>
+                            <button mat-raised-button class="button google-login" (click)="onSubmit()">
+                                <img src="assets/logos/google-icon.svg" class="google-icon" />
+                                Continue with <span [ngStyle]="{fontWeight: '600'}">Google</span>
+                            </button>
+                            <button mat-raised-button class="button apple-login" (click)="onSubmit()">
+                                <mat-icon aria-hidden="false" aria-label="home icon" class="button-icon">apple</mat-icon>
+                                Continue with <span [ngStyle]="{fontWeight: '600'}">Apple</span>
+                            </button>
+                        </div>
+                        <p>Don't have an account?</p>
+
+                    </mat-card-actions>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

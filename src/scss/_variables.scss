@@ -1,6 +1,109 @@
 // $primary: #F29422;
-// $primary: #3f97e1;
-// $white: #fff;
-// $black: #463f3f;
-// $text-color: #555;
-// $bg-dark: #e8e6e6;
+$text-color: #555;
+$heading-color: #000000;
+
+$widthXS: 1px;
+$widthSM: 576px;
+$widthMD: 768px;
+$widthLG: 992px;
+$widthXL: 1200px;
+$widthXXL: 1400px;
+ 
+/* XS Screen range */
+@mixin XS {
+    @media (min-width:$widthXS) {
+       @content;
+    }
+}
+
+@mixin XS-SM {
+    @media (min-width:$widthXS) and (max-width:575.9px) { 
+       @content;
+    }
+}
+
+@mixin XS-MD {
+    @media (min-width:$widthXS) and (max-width:767.9px) {
+       @content;
+    }
+}
+
+@mixin XS-LG {
+    @media (min-width:$widthXS) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+/* SM Screen range */
+@mixin SM {
+    @media (min-width:$widthSM) {
+       @content;
+    }
+}
+
+@mixin SM-MD {
+    @media (min-width:$widthSM) and (max-width:767.9px) {
+       @content;
+    }
+}
+
+@mixin SM-LG {
+    @media (min-width:$widthSM) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+/* MD Screen range */
+@mixin MD {
+    @media (min-width:$widthMD) {
+       @content;
+    }
+}
+
+@mixin MD-LG {
+    @media (min-width:$widthMD) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+@mixin MD-XL {
+    @media (min-width:$widthMD) and (max-width:1199.9px) {
+       @content;
+    }
+}
+
+/* LG Screen range */
+@mixin LG {
+    @media (min-width:$widthLG) {
+       @content;
+    }
+}
+
+@mixin LG-XL {
+    @media (min-width:$widthLG) and (max-width:1199.9px) {
+       @content;
+    }
+}
+
+/* XG Screen range */
+@mixin XL {
+    @media (min-width:$widthXL) {
+       @content;
+    }
+}
+
+@mixin XL-XXL {
+    @media (min-width:$widthXL) and (max-width:1399.9px) {
+       @content;
+    }
+}
+
+/* XXL Screen range*/
+@mixin  XXL {
+    @media (min-width: $widthXXL){
+        @content
+    }
+}
+
+
+
