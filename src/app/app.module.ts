@@ -5,6 +5,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //modules imports
 import { AppRoutingModule } from '../routing/app.routing.module';
@@ -37,6 +39,7 @@ import { LoginComponent } from './desktopUI/login/login.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

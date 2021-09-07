@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import {EmailLogin as emailLoginInterface} from '../../_shared/models/email-login.mdoel';
+import { AuthService } from 'src/app/_shared/services/auth.service';
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 
 
 // XSmall	(max-width: 599.98px)
@@ -16,46 +21,43 @@ import {FormControl, Validators, FormGroup} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   blacklistEmail: string[] = ['me@you.com']
   loginForm!: FormGroup;
   hide: boolean = true;
   checked: boolean = false;
-  destroyed = new Subject<void>();
-  currentScreenSize!: string;
-  currentScreenSize2!: any;
-  displayNameMap = new Map([
-    [Breakpoints.XSmall, 'XSmall'],
-    [Breakpoints.Small, 'Small'],
-    [Breakpoints.Medium, 'Medium'],
-    [Breakpoints.Large, 'Large'],
-    [Breakpoints.XLarge, 'XLarge'],
-  ]);
+  user!: emailLoginInterface;
+  isLoading: boolean = false;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  error:string|null = null;
+  authUser: any = null
+  provider: any;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
-      Breakpoints.Large,
-      Breakpoints.XLarge,
-    ]).pipe(takeUntil(this.destroyed)).subscribe(result => {
-        for (const query of Object.keys(result.breakpoints)) {
-          if (result.breakpoints[query]) {
-            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
-          }
-        }
-    });
+  constructor(private authService: AuthService, public auth: AngularFireAuth, private alertify: AlertifyService) {}
 
-  }
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      // email: new FormControl('', [Validators.required, Validators.email, this.customEmailValidator.bind(this)], [this.customAsyncEmailValidator.bind(this)]),
-      email: new FormControl('', [Validators.required, Validators.email, this.customEmailValidator.bind(this)]),
+      username: new FormControl('', [Validators.required, Validators.email, this.customEmailValidator.bind(this)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       rememberMe: new FormControl(this.checked)
     })
-    console.log(this.loginForm)
+
+    this.auth.authState.subscribe(authState => {
+      this.authUser = authState
+      console.log(this.authUser)
+    })
+
+    // this.authService.signupDesktop().then(
+    //   res => {
+    //     console.log(res)
+    //   },
+    //   errorMessage =>{
+    //     console.log(errorMessage)
+          
+    //   }
+    // );
   }
 
   customEmailValidator(control: FormControl): {[s:string]: boolean}|null {
@@ -80,19 +82,67 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit(){
     console.log(this.loginForm)
+    if (this.loginForm.valid) {
+      // this.isLoading = true;
+      const {username, password} = this.loginForm.value;
+      this.user = {username, password}
+      this.authService.emailLogin(this.user).subscribe((userCredential) => {
+        this.isLoading = false;
+        console.log(userCredential)
+        this.authUser = userCredential
+        this.alertify.success(`Welcome back ${userCredential.email}`);
+        this.loginForm.reset()
+      },errorMessage => {
+        console.log(errorMessage)
+        this.alertify.error(`${errorMessage}`);
+      })
+    }
   }
 
+  onSubmitFacebook(){
+    this.authService.onSubmitFacebook().then((value)=>{
+      console.log(value)
+      // this.alertify.success(`Welcome back`);
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  onSubmitGoogle(){
+    this.authService.onSubmitGoogle().then((value)=>{
+      console.log(value)
+      this.alertify.success(`Welcome back ${value.user.displayName}`);
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  onSubmitApple(){
+    this.authService.onSubmitApple().then((value)=>{
+      console.log(value)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+
+  
+  onLogout(){
+    this.auth.signOut().then(res =>{
+      console.log(res)
+    }).catch(error => {
+      console.log(error)
+    })
+
+    this.loginForm.reset()
+    this.authUser = null
+  }
   getErrorMessage() {
     // if (this.email.hasError('required')) {
       return 'You must enter an email address';
     // }
 
     // return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
-  ngOnDestroy() {
-    this.destroyed.next();
-    this.destroyed.complete();
   }
 
 }
