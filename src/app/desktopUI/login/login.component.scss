@@ -322,6 +322,8 @@
     }
 }
 
+@include XL{}
+
 @include XXL{
     .login-card{
         background: white;

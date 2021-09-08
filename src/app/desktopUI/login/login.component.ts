@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
-import {EmailLogin as emailLoginInterface} from '../../_shared/models/email-login.mdoel';
+import {EmailLogin as emailLoginInterface} from '../../_shared/models/email-login.model';
 import { AuthService } from 'src/app/_shared/services/auth.service';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
