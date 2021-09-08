@@ -15,7 +15,7 @@
         // background: black;
         height: calc( 100vh - 2.375rem );
         width: 95vw;
-        overflow-x: auto;
+        overflow: hidden;
     }
 
     .form-content{
