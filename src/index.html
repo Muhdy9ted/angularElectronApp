@@ -5,12 +5,41 @@
   <title>Gigworks</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/logos/gigwork-logo.svg">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+
+  <!-- <ul>
+    <h1>Text test</h1>  
+    </ul>
+    <script>
+      const electron = require('electron');
+      const {ipcRenderer} = electron;
+      const ul = document.querySelector('ul');
+  
+      //catch added item from addwindow.html
+      ipcRenderer.on('item:add', function(e, item){
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(item);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+      })
+  
+      //clear items
+      ipcRenderer.on('item:clear', function(){
+        ul.innerHTML = ''
+      })
+  
+      //clear item
+      ul.addEventListener('dblclick', removeItem)
+      
+      function removeItem(e){
+        e.target.remove();
+      }
+    </script> -->
 </body>
 </html>

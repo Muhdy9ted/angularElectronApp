@@ -1,6 +1,23 @@
 // $primary: #F29422;
-$text-color: #555;
+$text-color: #212529;
 $heading-color: #000000;
+
+$XSFontSize: clamp(0.8rem, 3.5vw, 0.975rem); 
+$XSTitleSize: clamp(0.9rem, 3.5vw, 1rem);
+$SMFontSize: clamp(0.7rem, 2.5vw, 0.875rem);
+$MDFontSize: clamp(0.9rem, 2vw, 1rem);
+$LGFontSize: clamp(1rem, 2vw, 1rem);
+$XLFontSize: clamp(1rem, 1.8vw, 1.125rem);
+
+
+
+
+// @include XS{}
+// @include SM{}
+// @include MD{}
+// @include LG{}
+// @include XL{}
+// @include XXL{}
 
 $widthXS: 1px;
 $widthSM: 576px;
@@ -85,7 +102,7 @@ $widthXXL: 1400px;
     }
 }
 
-/* XG Screen range */
+/* XL Screen range */
 @mixin XL {
     @media (min-width:$widthXL) {
        @content;

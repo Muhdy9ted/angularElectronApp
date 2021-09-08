@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gigworks-desktop';
+
+  minimizeWindow(){
+    console.log('minimized')
+  }
+
+  maximizeWindow(){
+    console.log('maximized')
+  }
+
+
+  closeWindow(){
+    console.log('window closed')
+  }
 }

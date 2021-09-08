@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angul
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { EmailLogin } from '../models/email-login.mdoel';
+import { EmailLogin } from '../models/email-login.model';
 import { AuthResponse } from '../models/firebase-auth-response.model';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';

@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<header class="header">
+    <span><img src="assets/logos/gigwork-logo.svg" class="logo" /><span class="logo-text">Gigworks</span></span>
+    <nav>
+        <ul class="horizontal-list">
+            <li><mat-icon aria-hidden="false" aria-label="minimize icon" class="control-icon" (click)="minimizeWindow()">minimize</mat-icon></li>
+            <li><mat-icon aria-hidden="false" aria-label="maximize icon" class="control-icon mt-3" (click)="maximizeWindow()">fullscreen</mat-icon></li>
+            <li><mat-icon aria-hidden="false" aria-label="close icon" class="control-icon close mt-3" (click)="closeWindow()">close</mat-icon></li>
+        </ul>
+    </nav>
+
+</header>
+<div class="body-wrapper">
+    <router-outlet></router-outlet>
+</div>

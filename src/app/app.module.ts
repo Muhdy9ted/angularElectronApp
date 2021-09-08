@@ -14,12 +14,18 @@ import { MaterialModule } from './material.module';
 
 //components imports
 import { LoginComponent } from './desktopUI/login/login.component';
+import { ContractsListComponent } from './desktopUI/contracts-list/contracts-list.component';
+import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
+import { ContractDetailsComponent } from './desktopUI/contract-details/contract-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ContractsListComponent,
+    UserNavbarComponent,
+    ContractDetailsComponent
 
   ],
   imports: [
