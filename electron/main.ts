@@ -18,7 +18,7 @@ http.createServer(appServer).listen(3007, function() {
 let win: BrowserWindow;
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600, frame: false,
+  win = new BrowserWindow({ width: 800, height: 800, frame: false,
     webPreferences:{
       nativeWindowOpen: true,
   } });
