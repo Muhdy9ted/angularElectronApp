@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { debounce } from 'lodash';
+
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 import { FirestoreDbService } from 'src/app/_shared/services/firestore-db.service';
 import { Contract } from '../../_shared/models/contracts.model'
@@ -11,11 +13,12 @@ import { Contract } from '../../_shared/models/contracts.model'
 export class ContractsListComponent implements OnInit {
   contracts: Contract[] = [];
   contract! : Contract;
-
+  term!: string;
   
   constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
+    this.searchTerm = debounce(this.searchTerm.bind(this), 500)
     this.fireservice.getContracts().subscribe(contracts => {
       console.log(contracts)
       this.contracts = contracts
@@ -74,6 +77,11 @@ export class ContractsListComponent implements OnInit {
       return `${newTitle.join(' ')}...`;
     }
     return title;
+  }
+
+  searchTerm(event){
+    this.term = event.target.value;
+    // this.search.search(event.target.value)
   }
 
 }

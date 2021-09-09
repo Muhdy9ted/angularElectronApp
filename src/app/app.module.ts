@@ -19,6 +19,7 @@ import { LoginComponent } from './desktopUI/login/login.component';
 import { ContractsListComponent } from './desktopUI/contracts-list/contracts-list.component';
 import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 import { ContractDetailsComponent } from './desktopUI/contract-details/contract-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -50,7 +51,9 @@ import { ContractDetailsComponent } from './desktopUI/contract-details/contract-
     ReactiveFormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

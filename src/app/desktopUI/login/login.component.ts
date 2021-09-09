@@ -11,7 +11,6 @@ import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 import { Router } from '@angular/router';
 
 
-
 // XSmall	(max-width: 599.98px)
 // Small	(min-width: 600px) and (max-width: 959.98px)
 // Medium	(min-width: 960px) and (max-width: 1279.98px)
@@ -90,11 +89,11 @@ export class LoginComponent implements OnInit {
       this.user = {username, password}
       this.authService.emailLogin(this.user).subscribe((userCredential) => {
         this.isLoading = false;
-        console.log(userCredential)
         this.authUser = userCredential
         this.alertify.success(`Welcome back ${userCredential.email}`);
         this.router.navigate(['/contract-lists']);
         this.loginForm.reset()
+        this.router.navigate(['/', 'contract-lists'])
       },errorMessage => {
         console.log(errorMessage)
         this.alertify.error(`${errorMessage}`);
@@ -114,6 +113,7 @@ export class LoginComponent implements OnInit {
   onSubmitGoogle(){
     this.authService.onSubmitGoogle().then((value)=>{
       console.log(value)
+      this.router.navigate(['/', 'contract-lists'])
       this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
       console.log(error)
@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitApple(){
     this.authService.onSubmitApple().then((value)=>{
+      this.router.navigate(['/', 'contract-lists'])
       console.log(value)
     }).catch(error => {
       console.log(error)

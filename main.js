@@ -7,6 +7,7 @@ var win;
 // process.env.NODE_ENV = 'production'
 
 function createWindow () {
+    console.log(__dirname+'/assets/logos/gigwork-logo.svg')
     win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -25,6 +26,8 @@ function createWindow () {
         protocol: 'file:',
         slashes: true
     }))
+
+    win.setIcon(path.join(__dirname,'/assets/logos/gigwork-logo.svg'))
 
     //quit other windows when app when closed
     win.on('close', function(){
