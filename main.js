@@ -16,7 +16,7 @@ function createWindow () {
             nativeWindowOpen: true,
             contextIsolation: false,
         },
-        // frame: false
+        frame: false
     })
   
     // win.loadURL('http://localhost:4200');

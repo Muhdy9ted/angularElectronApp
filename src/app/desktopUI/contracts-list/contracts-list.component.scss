@@ -2,20 +2,26 @@
 
 @include XS{
 
-    // .container-fluid{
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: center;
-    // }
     .wrapper{
-        width: 97vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 100vh;
+    }
 
+    
+    .contract-card{
+        background: white;
+        height: calc( 100vh - 6.375rem );
+        width: 95vw;
+        margin-top: 1rem;
+        overflow-y: auto;
         @include SM{
             width: 75vw;
         }
 
         @include MD{
-            width: 70vw;
+            width: 90vw;
         }
 
         @include LG{

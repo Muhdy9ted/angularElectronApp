@@ -2,16 +2,317 @@
 
 @include XS{
 
-    // .wrapper{
-    //     // background-color: black;
-    // }
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 100vh;
+    }
+    .contract-card{
+        background: white;
+        // background: black;
+        height: calc( 100vh - 6.375rem );
+        width: 95vw;
+        margin-top: 1rem;
+        overflow-y: auto;
+        @include SM{
+            width: 75vw;
+        }
 
-    // .title-section{
-    //     displ
-    // }
+        @include MD{
+            width: 90vw;
+        }
+
+        @include LG{
+            width: 60vw;
+        }
+
+        @include XL{}
+
+        @include XXL{
+            width: 50vw;
+        }
+    }
+
+    .title-section{
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding-top: 1rem;
+    }
+
+    .contract-title-block{
+        margin-left: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .contract-title{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #212529;
+        margin-bottom: 0.1rem;
+    }
+
+    .client-name{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.8rem;
+        color: #898989;
+    }
+
+    .control-icon{
+        font-size: 2.4rem;
+        align-self: flex-start;
+        color: #898989;
+    }
 
     hr.hr {
         border-top: 1px solid #898989;
-        margin: 1rem 0;
+        margin: 0rem 0;
+    }
+
+    .timer{
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 0rem;
+
+        @include MD{
+            padding: 0 2rem;
+        }
+    }
+
+    .counter{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .current-session{
+        .current-session-title{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: $XSFontSize;
+            color: #898989;
+            margin-bottom: 0.1rem;
+
+            @include SM{
+                font-size: $XSFontSize;
+            }
+            @include MD{
+                font-size: $MDFontSize;
+            }
+            @include LG{
+                font-size: $LGFontSize;
+            }
+            @include XL{
+                font-size: $XLFontSize;
+            }
+            @include XXL{
+                font-size: $XXLFontSize;
+            }
+        }
+
+        .time{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: clamp(2rem, 2.5vw, 3rem);
+            margin-top: 0.5rem;
+            color: #212529;
+        }
+    }
+
+    .today{
+        .today-title{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: $XSFontSize;
+            color: #898989;
+            margin-bottom: 0.1rem;
+            margin-top: 0.6rem;
+
+            @include SM{
+                font-size: $XSFontSize;
+            }
+            @include MD{
+                font-size: $MDFontSize;
+            }
+            @include LG{
+                font-size: $LGFontSize;
+            }
+            @include XL{
+                font-size: $XLFontSize;
+            }
+            @include XXL{
+                font-size: $XXLFontSize;
+            }
+        }
+
+        .today-text{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: $XSFontSize;
+            line-height: 21px;            
+            color: #212529; 
+
+            @include SM{
+                font-size: $XSFontSize;
+            }
+            @include MD{
+                font-size: $MDFontSize;
+            }
+            @include LG{
+                font-size: $LGFontSize;
+            }
+            @include XL{
+                font-size: $XLFontSize;
+            }
+            @include XXL{
+                font-size: $XXLFontSize;
+            }
+        }
+    }
+
+    .button{
+        .start-button{
+            border: 1px solid #e28f7a;
+            border-radius: 15px;
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: bold;
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            padding: 0.3rem 0.9rem;
+        }
+
+        .button-icon{
+            color: #FFFFFF;
+            margin-top: 0.6rem;
+            margin-left: 0.8rem;
+        }
+
+        .week{
+            .week-title{
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 500;
+                font-size: $XSFontSize;
+                color: #898989;
+                margin-top: 0.5rem;
+                margin-bottom: 0.1rem;
+    
+                @include SM{
+                    font-size: $XSFontSize;
+                }
+                @include MD{
+                    font-size: $MDFontSize;
+                }
+                @include LG{
+                    font-size: $LGFontSize;
+                }
+                @include XL{
+                    font-size: $XLFontSize;
+                }
+                @include XXL{
+                    font-size: $XXLFontSize;
+                }
+            }
+
+            .week-text{
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 500;
+                font-size: $XSFontSize;
+                line-height: 21px;            
+                color: #212529; 
+    
+                @include SM{
+                    font-size: $XSFontSize;
+                }
+                @include MD{
+                    font-size: $MDFontSize;
+                }
+                @include LG{
+                    font-size: $LGFontSize;
+                }
+                @include XL{
+                    font-size: $XLFontSize;
+                }
+                @include XXL{
+                    font-size: $XXLFontSize;
+                }
+            }
+        }
+    }
+
+    .memo-section{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.5rem;
+
+        @include MD{
+            padding: 0 2rem;
+        }
+
+        .memo-title{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: $XSFontSize;
+            color: #212529;
+            margin-bottom: 0.1rem;
+
+            @include SM{
+                font-size: $XSFontSize;
+            }
+            @include MD{
+                font-size: $MDFontSize;
+            }
+            @include LG{
+                font-size: $LGFontSize;
+            }
+            @include XL{
+                font-size: $XLFontSize;
+            }
+            @include XXL{
+                font-size: $XXLFontSize;
+            }
+        }
+
+        .memo-input{
+            width: 100%;
+        }
+
+        .input{
+            height: 6rem;
+        }
+    }
+
+    .others-section{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @include MD{
+            padding: 0 2rem;
+        }
+
+        .button-icon{
+            margin-left: 1rem;
+        }
+
+        .others-button{
+            margin-bottom: 0.7rem;
+        }
     }
 }

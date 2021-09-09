@@ -15,7 +15,8 @@ http.createServer(appServer).listen(3007, function () {
 });
 var win;
 function createWindow() {
-    win = new electron_1.BrowserWindow({ width: 800, height: 600, webPreferences: {
+    win = new electron_1.BrowserWindow({ width: 800, height: 600, frame: false,
+        webPreferences: {
             nativeWindowOpen: true,
         } });
     win.loadURL("http://localhost:3007");
@@ -32,8 +33,6 @@ electron_1.app.on("activate", function () {
 });
 // Quit when all windows are closed.
 electron_1.app.on('window-all-closed', function () {
-    // On macOS it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         electron_1.app.quit();
     }

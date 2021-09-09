@@ -9,7 +9,7 @@ import { LoginComponent } from "src/app/desktopUI/login/login.component";
 const routes: Routes = [
     { path: 'login', component: LoginComponent},
     {path: 'contract-lists', component:  ContractsListComponent},
-    {path: 'contracts-list', component:  ContractDetailsComponent},
+    {path: 'contract-list', component:  ContractDetailsComponent},
     { path: '', redirectTo: 'login', pathMatch: 'full'}
 ]
 
