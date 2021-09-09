@@ -6,11 +6,12 @@ import { Contract } from "../models/contracts.model";
 import { FirestoreDbService } from "../services/firestore-db.service";
 
 @Injectable()
-export class GetContract implements Resolve<Contract>{
+export class GetContractResolver implements Resolve<Contract>{
     
     constructor(private firestoreService: FirestoreDbService, private router: Router){}
 
     resolve(route: ActivatedRouteSnapshot): Observable<any>{
+        console.log(route.params)
         return this.firestoreService.getContract(route.params.contractId);
     }
 }

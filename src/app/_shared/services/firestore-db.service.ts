@@ -17,6 +17,7 @@ export class FirestoreDbService {
   constructor(public fireservice: AngularFirestore) { 
     this.contracts = this.fireservice.collection<Contract>('contracts').snapshotChanges().pipe(map(
       changes => {
+        console.log(changes)
         return changes.map(a => {
           const data = a.payload.doc.data() as Contract;
           data.id = a.payload.doc.id
@@ -24,6 +25,8 @@ export class FirestoreDbService {
         })
       }
     )); 
+
+    this.contracts
   }
 
   createContract(contract: Contract){
@@ -31,6 +34,7 @@ export class FirestoreDbService {
   }
 
   getContracts(){
+    console.log(this.contracts)
     return this.contracts;
   }
 

@@ -9,7 +9,12 @@ export class GetContractsResolver implements Resolve<Contract[]>{
 
     constructor(private firestoreService: FirestoreDbService, private router: Router){}
 
-    resolve(): Observable<Contract[]>{
-        return this.firestoreService.getContracts();
+    resolve():any{
+        let  contracts = this.firestoreService.getContracts().subscribe(res=>{
+            console.log(res)
+        });
+        console.log(contracts)
+        return contracts
+        // return this.firestoreService.getContracts();
     }
 }

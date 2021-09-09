@@ -5,12 +5,13 @@ import { ContractsListComponent } from "src/app/desktopUI/contracts-list/contrac
 
 //components imports
 import { LoginComponent } from "src/app/desktopUI/login/login.component";
+import { GetContractResolver } from "src/app/_shared/resolvers/getContract.resolver";
 import { GetContractsResolver } from "src/app/_shared/resolvers/getContracts.resolver";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent},
     {path: 'contract-list', component:  ContractsListComponent, resolve:{contracts: GetContractsResolver}},
-    {path: 'contract-details/:contractId', component:  ContractDetailsComponent, resolve: {contract: GetContractsResolver}},
+    {path: 'contract-details/:contractId', component:  ContractDetailsComponent, resolve: {contract: GetContractResolver}},
     { path: '', redirectTo: 'login', pathMatch: 'full'}
 ]
 

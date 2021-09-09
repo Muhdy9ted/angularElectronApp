@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounce } from 'lodash';
 
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
@@ -21,7 +20,7 @@ export class ContractsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
-
+    console.log(this.router.data)
     this.router.data.subscribe((data: Contract[]) => {
       console.log(data)
       this.contracts = data;
