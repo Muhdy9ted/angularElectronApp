@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { ActivatedRoute, Router } from '@angular/router';
+=======
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+>>>>>>> c714b703452e1cd2ae22d26eefb1af4e0a591d58
 import { debounce } from 'lodash';
 
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
@@ -20,6 +25,7 @@ export class ContractsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
+<<<<<<< HEAD
     console.log(this.router.data)
     this.router.data.subscribe((data: Contract[]) => {
       console.log(data)
@@ -29,6 +35,16 @@ export class ContractsListComponent implements OnInit {
     //   console.log(contracts)
     //   this.contracts = contracts
     // });
+=======
+
+    // this.router.data.subscribe((data: Contract[]) => {
+    //   this.contracts = data;
+    // })
+    this.fireservice.getContracts().subscribe(contracts => {
+      console.log(contracts)
+      this.contracts = contracts
+    });
+>>>>>>> c714b703452e1cd2ae22d26eefb1af4e0a591d58
   }
 
   findWork(){
@@ -59,9 +75,9 @@ export class ContractsListComponent implements OnInit {
   }
 
   contractDetails(event:any, contract: Contract){
-    this.fireservice.getContract(contract).subscribe((res)=> {
-      console.log(res)
-    })
+    // this.fireservice.getContract(contract).subscribe((res)=> {
+    //   console.log(res)
+    // })
   }
 
   deleteContract(event: any, contract: Contract){

@@ -23,7 +23,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { GetContractResolver } from './_shared/resolvers/getContract.resolver';
 import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +56,7 @@ import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver'
     Ng2SearchPipeModule,
     AngularFirestoreModule,
   ],
+
   providers: [GetContractResolver, GetContractsResolver],
   bootstrap: [AppComponent]
 })

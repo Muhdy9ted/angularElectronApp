@@ -10,8 +10,10 @@ import { GetContractsResolver } from "src/app/_shared/resolvers/getContracts.res
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent},
-    {path: 'contract-list', component:  ContractsListComponent, resolve:{contracts: GetContractsResolver}},
-    {path: 'contract-details/:contractId', component:  ContractDetailsComponent, resolve: {contract: GetContractResolver}},
+    // {path: 'contract-list', component:  ContractsListComponent, resolve:{contracts: GetContractsResolver}},
+    // {path: 'contract-details/:contractId', component:  ContractDetailsComponent, resolve: {contract: GetContractResolver}},
+    {path: 'contract-list', component:  ContractsListComponent },
+    {path: 'contract-details/:contractId', component:  ContractDetailsComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full'}
 ]
 
