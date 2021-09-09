@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Contract } from 'src/app/_shared/models/contracts.model';
+import { FirestoreDbService } from 'src/app/_shared/services/firestore-db.service';
 
 @Component({
   selector: 'app-contract-details',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractDetailsComponent implements OnInit {
 
-  constructor() { }
+  contract: Contract;
+
+  constructor(private firestore: FirestoreDbService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.contract = data.post.data;
+      console.log(data)
+    })
   }
 
 }

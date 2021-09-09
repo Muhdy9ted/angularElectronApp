@@ -34,6 +34,10 @@ export class FirestoreDbService {
     return this.contracts;
   }
 
+  getContract(contract: Contract){
+    return this.fireservice.collection('contracts').doc(`${contract.id}`).get()
+  }
+
   updateContract(contract: Contract){
     this.contractDoc = this.fireservice.doc(`contracts/${contract.id}`);
     return this.contractDoc.update(contract)

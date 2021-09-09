@@ -32,18 +32,20 @@
                 <div class="contracts-list" *ngIf="contracts.length">
                     <div class="yes-contracts">
                         <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let contract of contracts | filter:term" (dblclick)="deleteContract($event, contract)">
-                                <div class="list-content">
-                                    <div class="first-row">
-                                        <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>
-                                        <span class="first-row-text">{{contract.hours}}</span>
+                            <li class="list-group-item" *ngFor="let contract of contracts | filter:term" (click)="contractDetails($event, contract)">
+                                <a [routerLink]="['/', 'contract-details', contract.id]">
+                                    <div class="list-content">
+                                        <div class="first-row">
+                                            <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>
+                                            <span class="first-row-text">{{contract.hours}}</span>
+                                        </div>
+                                        <div class="second-row">
+                                            <span class="second-row-text">{{contract.clientName}}</span>
+                                            <span class="second-row-text">{{contract.limit}}</span>
+                                        </div>
+                                        <!-- <mat-icon aria-hidden="false" aria-label="keyboard_arrow_right icon" class="button-icon">keyboard_arrow_right</mat-icon> -->
                                     </div>
-                                    <div class="second-row">
-                                        <span class="second-row-text">{{contract.clientName}}</span>
-                                        <span class="second-row-text">{{contract.limit}}</span>
-                                    </div>
-                                    <!-- <mat-icon aria-hidden="false" aria-label="keyboard_arrow_right icon" class="button-icon">keyboard_arrow_right</mat-icon> -->
-                                </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
