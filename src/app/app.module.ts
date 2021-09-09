@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -17,6 +19,7 @@ import { LoginComponent } from './desktopUI/login/login.component';
 import { ContractsListComponent } from './desktopUI/contracts-list/contracts-list.component';
 import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 import { ContractDetailsComponent } from './desktopUI/contract-details/contract-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { ContractDetailsComponent } from './desktopUI/contract-details/contract-
     ReactiveFormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

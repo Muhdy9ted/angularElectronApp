@@ -8,7 +8,7 @@
                 <hr class="hr" />
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"><mat-icon aria-hidden="false" aria-label="minimize icon" class="control-icon">search</mat-icon></span>
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" (keyup)="searchTerm($event)">
                 </div>
                 <p class="hour-text">Hours this week</p>
                 <hr class="hr" />
@@ -32,7 +32,7 @@
                 <div class="contracts-list" *ngIf="contracts.length">
                     <div class="yes-contracts">
                         <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let contract of contracts">
+                            <li class="list-group-item" *ngFor="let contract of contracts | filter:term">
                                 <div class="list-content">
                                     <div class="first-row">
                                         <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>

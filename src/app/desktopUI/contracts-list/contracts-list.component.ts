@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Contract } from '../../_shared/models/contracts.model'
+import { Contract } from '../../_shared/models/contracts.model';
+import { debounce } from 'lodash';
+
 
 @Component({
   selector: 'app-contracts-list',
@@ -9,52 +11,47 @@ import { Contract } from '../../_shared/models/contracts.model'
 export class ContractsListComponent implements OnInit {
 
   contracts: Contract[] = [
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long is much longer than we expected',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long is much longer than we expected',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
+    {
+      contractName: 'Food project',
+      clientName: "Mark Zukerberg",
+      hours: "14:00 hrs",
+      limit: "2:00 hrs"
+    },
+    {
+      contractName: 'Tesla Project',
+      clientName: "Elon Musk",
+      hours: "15:00 hrs",
+      limit: "no limit"
+    },
+    {
+      contractName: 'Microsoft Git projects',
+      clientName: "Bill gates",
+      hours: "18:00 hrs",
+      limit: "4:00 hrs"
+    },
+    {
+      contractName: 'Microsoft Feed the world',
+      clientName: "Bill gates",
+      hours: "11:00 hrs",
+      limit: "3:00 hrs"
+    },
+    {
+      contractName: 'Clock project',
+      clientName: "Dan gold",
+      hours: "09:00 hrs",
+      limit: "1:00 hrs"
+    },
   ]
-  constructor() { }
+
+  term: string = "";
+
+  // private search = new JSearch('contractName')
+  constructor() {
+    this.searchTerm = debounce(this.searchTerm.bind(this), 500)
+  }
 
   ngOnInit(): void {
+    
   }
 
   limitContractTitle(title: string, limit = 40) {
@@ -73,6 +70,11 @@ export class ContractsListComponent implements OnInit {
       return `${newTitle.join(' ')}...`;
     }
     return title;
+  }
+
+  searchTerm(event){
+    this.term = event.target.value;
+    // this.search.search(event.target.value)
   }
 
 }

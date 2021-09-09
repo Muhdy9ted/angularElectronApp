@@ -27,6 +27,7 @@ function createWindow() {
     "http://localhost:3007"
   );
 
+  win.setIcon(__dirname + '/assets/logos/gigworks.png')
   win.webContents.openDevTools();
 
   win.on("closed", () => {
