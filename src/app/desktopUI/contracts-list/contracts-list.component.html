@@ -36,12 +36,21 @@
                                 <a [routerLink]="['/', 'contract-details', contract.id]">
                                     <div class="list-content">
                                         <div class="first-row">
+<<<<<<< HEAD
                                             <span class="first-row-text">{{contract?.contractName}}</span>
                                             <span class="first-row-text">{{contract?.hours}}</span>
                                         </div>
                                         <div class="second-row">
                                             <span class="second-row-text">{{contract?.clientName}}</span>
                                             <span class="second-row-text">{{contract?.limit}}</span>
+=======
+                                            <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>
+                                            <span class="first-row-text">{{contract.hours}}</span>
+                                        </div>
+                                        <div class="second-row">
+                                            <span class="second-row-text">{{contract.clientName}}</span>
+                                            <span class="second-row-text">{{contract.limit}}</span>
+>>>>>>> f2a0d9953a65aa53fd7ce4f8ce3824b3fd6e065c
                                         </div>
                                         <!-- <mat-icon aria-hidden="false" aria-label="keyboard_arrow_right icon" class="button-icon">keyboard_arrow_right</mat-icon> -->
                                     </div>
