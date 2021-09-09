@@ -8,6 +8,8 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
+import { Router } from '@angular/router';
+
 
 
 // XSmall	(max-width: 599.98px)
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit {
   authUser: any = null
   provider: any;
 
-  constructor(private authService: AuthService, public auth: AngularFireAuth, private alertify: AlertifyService) {}
+  constructor(private authService: AuthService, public auth: AngularFireAuth, private alertify: AlertifyService,  private router: Router) {}
 
 
   ngOnInit(): void {
@@ -91,6 +93,7 @@ export class LoginComponent implements OnInit {
         console.log(userCredential)
         this.authUser = userCredential
         this.alertify.success(`Welcome back ${userCredential.email}`);
+        this.router.navigate(['/contract-lists']);
         this.loginForm.reset()
       },errorMessage => {
         console.log(errorMessage)

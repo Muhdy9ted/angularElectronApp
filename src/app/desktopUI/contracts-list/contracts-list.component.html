@@ -20,7 +20,7 @@
                 <div class="contract-list" *ngIf="!contracts.length">
                     <div class="no-contract">
                         <p class="no-contract-text">You have no open contracts</p>
-                        <button mat-raised-button color="primary" class="button find-work">Find work</button>
+                        <button mat-raised-button color="primary" class="button find-work" (click)="findWork()">Find work</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="contracts-list" *ngIf="contracts.length">
                     <div class="yes-contracts">
                         <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let contract of contracts">
+                            <li class="list-group-item" *ngFor="let contract of contracts" (dblclick)="deleteContract($event, contract)">
                                 <div class="list-content">
                                     <div class="first-row">
                                         <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>

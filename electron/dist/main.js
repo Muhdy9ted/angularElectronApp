@@ -14,11 +14,15 @@ http.createServer(appServer).listen(3007, function () {
     console.log('Express server listening on port');
 });
 var win;
+console.log(__dirname);
 function createWindow() {
-    win = new electron_1.BrowserWindow({ width: 800, height: 800, frame: false,
+    win = new electron_1.BrowserWindow({ width: 800, height: 800, frame: true,
         webPreferences: {
             nativeWindowOpen: true,
-        } });
+        },
+        icon: __dirname + '../dist/assets/logos/gigwork-logo.svg',
+        // icon: __dirname + 'logos/gigwork-logo.svg',
+    });
     win.loadURL("http://localhost:3007");
     win.webContents.openDevTools();
     win.on("closed", function () {

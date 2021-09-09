@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from 'src/app/_shared/services/alertify.service';
+import { FirestoreDbService } from 'src/app/_shared/services/firestore-db.service';
 import { Contract } from '../../_shared/models/contracts.model'
 
 @Component({
@@ -7,54 +9,53 @@ import { Contract } from '../../_shared/models/contracts.model'
   styleUrls: ['./contracts-list.component.scss']
 })
 export class ContractsListComponent implements OnInit {
+  contracts: Contract[] = [];
+  contract! : Contract;
 
-  contracts: Contract[] = [
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long is much longer than we expected',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long is much longer than we expected',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "2:00 hrs"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-    // {
-    //   contractName: 'The name of the Contract Long',
-    //   clientName: "Client's Name",
-    //   hours: "15:00 hrs",
-    //   limit: "no limit"
-    // },
-  ]
-  constructor() { }
+  
+  constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
+    this.fireservice.getContracts().subscribe(contracts => {
+      console.log(contracts)
+      this.contracts = contracts
+    });
+  }
+
+  findWork(){
+    window.open('https://www.google.com')
+  }
+
+  createContract(){
+    let contract = {
+      contractName: 'gigworks',
+      clientName: 'VEProf',
+      hours: '8:00 hrs',
+      limit: 'no limit'
+    }
+    this.fireservice.createContract(contract).then((res) =>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  updateContract(event: any, contract: Contract){
+    this.fireservice.updateContract(contract).then(res => {
+      this.alertify.success('the contract has been successfully updated');
+      console.log(res);
+    }).catch(error =>{
+      console.log(error)
+    });
+  }
+
+  deleteContract(event: any, contract: Contract){
+    // this.fireservice.deleteContract(contract).then(res => {
+    //   console.log(res)
+    //   this.alertify.success('contract successfully deleted')
+    // }).catch(error =>{
+    //   console.log(error)
+    // })
   }
 
   limitContractTitle(title: string, limit = 40) {
