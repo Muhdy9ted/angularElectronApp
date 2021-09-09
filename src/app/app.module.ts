@@ -20,7 +20,8 @@ import { ContractsListComponent } from './desktopUI/contracts-list/contracts-lis
 import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 import { ContractDetailsComponent } from './desktopUI/contract-details/contract-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { GetContractResolver } from './_shared/resolvers/getContract.resolver';
+import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule,
     AngularFirestoreModule,
   ],
-  providers: [],
+
+  providers: [GetContractResolver, GetContractsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

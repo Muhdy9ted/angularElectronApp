@@ -136,6 +136,10 @@
         }
     }
 
+    .yes-contracts{
+        margin-top: 1rem;
+    }
+
     .contracts-list{
         .list-group-item {
             position: relative;
@@ -148,6 +152,7 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.125);
             border-right: none;
             border-left: none;
+            cursor: pointer;
         }
 
         .list-content{
@@ -168,7 +173,7 @@
             font-family: Gilroy;
             font-style: normal;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #212529;
         }
 
@@ -183,8 +188,32 @@
             font-family: Gilroy;
             font-style: normal;
             font-weight: 500;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #898989;
         }
+    }
+
+    /* unvisited link */
+    a:link {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* visited link */
+    a:visited {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* mouse over link */
+    a:hover {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* selected link */
+    a:active {
+        color: $text-color;
+        text-decoration: none;
     }
 }

@@ -91,9 +91,8 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.authUser = userCredential
         this.alertify.success(`Welcome back ${userCredential.email}`);
-        this.router.navigate(['/contract-lists']);
+        this.router.navigate(['/contract-list']);
         this.loginForm.reset()
-        this.router.navigate(['/', 'contract-lists'])
       },errorMessage => {
         console.log(errorMessage)
         this.alertify.error(`${errorMessage}`);
@@ -112,8 +111,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitGoogle(){
     this.authService.onSubmitGoogle().then((value)=>{
-      console.log(value)
-      this.router.navigate(['/', 'contract-lists'])
+      this.router.navigate(['/contract-list'])
       this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
       console.log(error)
@@ -122,7 +120,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitApple(){
     this.authService.onSubmitApple().then((value)=>{
-      this.router.navigate(['/', 'contract-lists'])
+      this.router.navigate(['/', 'contract-list'])
       console.log(value)
     }).catch(error => {
       console.log(error)
@@ -140,13 +138,6 @@ export class LoginComponent implements OnInit {
 
     this.loginForm.reset()
     this.authUser = null
-  }
-  getErrorMessage() {
-    // if (this.email.hasError('required')) {
-      return 'You must enter an email address';
-    // }
-
-    // return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
 }

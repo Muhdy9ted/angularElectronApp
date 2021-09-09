@@ -42,6 +42,10 @@
         padding-top: 1rem;
     }
 
+    .contract-title-section{
+        margin-top: 1.5rem;
+    }
+
     .contract-title-block{
         margin-left: 1.4rem;
         display: flex;
@@ -52,8 +56,9 @@
     .contract-title{
         font-family: Gilroy;
         font-style: normal;
-        font-weight: 500;
-        font-size: 1rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-transform: capitalize;
         color: #212529;
         margin-bottom: 0.1rem;
     }
@@ -62,14 +67,15 @@
         font-family: Gilroy;
         font-style: normal;
         font-weight: 500;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         color: #898989;
     }
 
     .control-icon{
-        font-size: 2.4rem;
+        font-size: 3rem;
         align-self: flex-start;
         color: #898989;
+        margin-top: -0.4rem;
     }
 
     hr.hr {
@@ -78,7 +84,7 @@
     }
 
     .timer{
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -162,7 +168,6 @@
             font-style: normal;
             font-weight: 500;
             font-size: $XSFontSize;
-            line-height: 21px;            
             color: #212529; 
 
             @include SM{
@@ -202,6 +207,7 @@
         }
 
         .week{
+            margin-top: 1rem;
             .week-title{
                 font-family: Gilroy;
                 font-style: normal;
@@ -233,7 +239,6 @@
                 font-style: normal;
                 font-weight: 500;
                 font-size: $XSFontSize;
-                line-height: 21px;            
                 color: #212529; 
     
                 @include SM{
