@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Contract } from '../models/contracts.model';
 import { map } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreDbService {
-
   contractDoc!: AngularFirestoreDocument<Contract>;
 
   contracts: Observable<Contract[]>
-  constructor(public fireservice: AngularFirestore) { 
+  constructor(public fireservice: AngularFirestore, private readonly location:Location) { 
     this.contracts = this.fireservice.collection<Contract>('contracts').snapshotChanges().pipe(map(
       changes => {
         return changes.map(a => {
@@ -23,7 +23,11 @@ export class FirestoreDbService {
           return data;
         })
       }
-    )); 
+    ));
+  }
+
+  goBack(){
+    this.location.back()
   }
 
   createContract(contract: Contract){
@@ -35,7 +39,7 @@ export class FirestoreDbService {
   }
 
   getContract(contract: Contract){
-    return this.fireservice.collection('contracts').doc(`${contract.id}`).get()
+    return this.fireservice.collection('contracts').doc(`${contract.id}`).valueChanges()
   }
 
   updateContract(contract: Contract){

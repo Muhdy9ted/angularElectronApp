@@ -111,8 +111,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitGoogle(){
     this.authService.onSubmitGoogle().then((value)=>{
-      console.log(value)
-      this.router.navigate(['/', 'contract-list'])
+      this.router.navigate(['/contract-list'])
       this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
       console.log(error)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { debounce } from 'lodash';
 
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
@@ -22,14 +22,13 @@ export class ContractsListComponent implements OnInit {
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
 
-    this.router.data.subscribe((data: Contract[]) => {
-      console.log(data)
-      this.contracts = data;
-    })
-    // this.fireservice.getContracts().subscribe(contracts => {
-    //   console.log(contracts)
-    //   this.contracts = contracts
-    // });
+    // this.router.data.subscribe((data: Contract[]) => {
+    //   this.contracts = data;
+    // })
+    this.fireservice.getContracts().subscribe(contracts => {
+      console.log(contracts)
+      this.contracts = contracts
+    });
   }
 
   findWork(){
@@ -60,9 +59,9 @@ export class ContractsListComponent implements OnInit {
   }
 
   contractDetails(event:any, contract: Contract){
-    this.fireservice.getContract(contract).subscribe((res)=> {
-      console.log(res)
-    })
+    // this.fireservice.getContract(contract).subscribe((res)=> {
+    //   console.log(res)
+    // })
   }
 
   deleteContract(event: any, contract: Contract){

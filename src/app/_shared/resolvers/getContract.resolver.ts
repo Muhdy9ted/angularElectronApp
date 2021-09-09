@@ -6,7 +6,7 @@ import { Contract } from "../models/contracts.model";
 import { FirestoreDbService } from "../services/firestore-db.service";
 
 @Injectable()
-export class GetContract implements Resolve<Contract>{
+export class GetContractResolver implements Resolve<Contract>{
     
     constructor(private firestoreService: FirestoreDbService, private router: Router){}
 
