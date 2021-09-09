@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from 'express';
 import { debounce } from 'lodash';
 
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
@@ -15,14 +17,19 @@ export class ContractsListComponent implements OnInit {
   contract! : Contract;
   term!: string;
   
-  constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService) { }
+  constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
-    this.fireservice.getContracts().subscribe(contracts => {
-      console.log(contracts)
-      this.contracts = contracts
-    });
+
+    this.router.data.subscribe((data: Contract[]) => {
+      console.log(data)
+      this.contracts = data;
+    })
+    // this.fireservice.getContracts().subscribe(contracts => {
+    //   console.log(contracts)
+    //   this.contracts = contracts
+    // });
   }
 
   findWork(){
@@ -50,6 +57,12 @@ export class ContractsListComponent implements OnInit {
     }).catch(error =>{
       console.log(error)
     });
+  }
+
+  contractDetails(event:any, contract: Contract){
+    this.fireservice.getContract(contract).subscribe((res)=> {
+      console.log(res)
+    })
   }
 
   deleteContract(event: any, contract: Contract){
