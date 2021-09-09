@@ -4,14 +4,6 @@
   "main": "main.js",
   "author": "Abdullahi Muhammed",
   "description": "gigworks time-tracker",
-  "browser": {
-    "http": false,
-    "https": false,
-    "net": false,
-    "path": false,
-    "stream": false,
-    "tls": false
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
