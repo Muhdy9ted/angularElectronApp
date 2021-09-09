@@ -16,12 +16,18 @@ http.createServer(appServer).listen(3007, function() {
 });
 
 let win: BrowserWindow;
+console.log(__dirname);
+
 
 function createWindow() {
   win = new BrowserWindow({ width: 800, height: 800, frame: true,
     webPreferences:{
       nativeWindowOpen: true,
-  } });
+    },
+    icon: __dirname + '../dist/assets/logos/gigwork-logo.svg',
+    // icon: __dirname + 'logos/gigwork-logo.svg',
+  });
+
 
   win.loadURL(
     "http://localhost:3007"

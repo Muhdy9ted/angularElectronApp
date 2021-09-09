@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   authUser: any = null
   provider: any;
 
-  constructor(private authService: AuthService, public auth: AngularFireAuth, private alertify: AlertifyService, private router: Router) {}
+  constructor(private authService: AuthService, public auth: AngularFireAuth, private alertify: AlertifyService,  private router: Router) {}
 
 
   ngOnInit(): void {
@@ -91,6 +91,7 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.authUser = userCredential
         this.alertify.success(`Welcome back ${userCredential.email}`);
+        this.router.navigate(['/contract-lists']);
         this.loginForm.reset()
         this.router.navigate(['/', 'contract-lists'])
       },errorMessage => {

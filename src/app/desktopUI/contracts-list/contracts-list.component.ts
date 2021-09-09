@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Contract } from '../../_shared/models/contracts.model';
 import { debounce } from 'lodash';
 
+import { AlertifyService } from 'src/app/_shared/services/alertify.service';
+import { FirestoreDbService } from 'src/app/_shared/services/firestore-db.service';
+import { Contract } from '../../_shared/models/contracts.model'
 
 @Component({
   selector: 'app-contracts-list',
@@ -9,49 +11,54 @@ import { debounce } from 'lodash';
   styleUrls: ['./contracts-list.component.scss']
 })
 export class ContractsListComponent implements OnInit {
-
-  contracts: Contract[] = [
-    {
-      contractName: 'Food project',
-      clientName: "Mark Zukerberg",
-      hours: "14:00 hrs",
-      limit: "2:00 hrs"
-    },
-    {
-      contractName: 'Tesla Project',
-      clientName: "Elon Musk",
-      hours: "15:00 hrs",
-      limit: "no limit"
-    },
-    {
-      contractName: 'Microsoft Git projects',
-      clientName: "Bill gates",
-      hours: "18:00 hrs",
-      limit: "4:00 hrs"
-    },
-    {
-      contractName: 'Microsoft Feed the world',
-      clientName: "Bill gates",
-      hours: "11:00 hrs",
-      limit: "3:00 hrs"
-    },
-    {
-      contractName: 'Clock project',
-      clientName: "Dan gold",
-      hours: "09:00 hrs",
-      limit: "1:00 hrs"
-    },
-  ]
-
-  term: string = "";
-
-  // private search = new JSearch('contractName')
-  constructor() {
-    this.searchTerm = debounce(this.searchTerm.bind(this), 500)
-  }
+  contracts: Contract[] = [];
+  contract! : Contract;
+  term!: string;
+  
+  constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService) { }
 
   ngOnInit(): void {
-    
+    this.searchTerm = debounce(this.searchTerm.bind(this), 500)
+    this.fireservice.getContracts().subscribe(contracts => {
+      console.log(contracts)
+      this.contracts = contracts
+    });
+  }
+
+  findWork(){
+    window.open('https://www.google.com')
+  }
+
+  createContract(){
+    let contract = {
+      contractName: 'gigworks',
+      clientName: 'VEProf',
+      hours: '8:00 hrs',
+      limit: 'no limit'
+    }
+    this.fireservice.createContract(contract).then((res) =>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  updateContract(event: any, contract: Contract){
+    this.fireservice.updateContract(contract).then(res => {
+      this.alertify.success('the contract has been successfully updated');
+      console.log(res);
+    }).catch(error =>{
+      console.log(error)
+    });
+  }
+
+  deleteContract(event: any, contract: Contract){
+    // this.fireservice.deleteContract(contract).then(res => {
+    //   console.log(res)
+    //   this.alertify.success('contract successfully deleted')
+    // }).catch(error =>{
+    //   console.log(error)
+    // })
   }
 
   limitContractTitle(title: string, limit = 40) {
