@@ -32,11 +32,7 @@
                 <div class="contracts-list" *ngIf="contracts.length">
                     <div class="yes-contracts">
                         <ul class="list-group">
-<<<<<<< HEAD
-                            <li class="list-group-item" *ngFor="let contract of contracts | filter:term">
-=======
-                            <li class="list-group-item" *ngFor="let contract of contracts" (dblclick)="deleteContract($event, contract)">
->>>>>>> 0738aefc4f347a52ad29aa28044e9aeb85e7ec29
+                            <li class="list-group-item" *ngFor="let contract of contracts | filter:term" (dblclick)="deleteContract($event, contract)">
                                 <div class="list-content">
                                     <div class="first-row">
                                         <span class="first-row-text">{{limitContractTitle(contract.contractName, 29)}}</span>
