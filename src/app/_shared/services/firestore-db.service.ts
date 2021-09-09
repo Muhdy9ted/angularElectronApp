@@ -24,17 +24,12 @@ export class FirestoreDbService {
           return data;
         })
       }
-<<<<<<< HEAD
     )); 
-
     this.contracts
-=======
-    ));
   }
 
   goBack(){
     this.location.back()
->>>>>>> c714b703452e1cd2ae22d26eefb1af4e0a591d58
   }
 
   createContract(contract: Contract){
