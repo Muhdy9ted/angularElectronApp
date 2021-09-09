@@ -10,11 +10,11 @@
     }
     .contract-card{
         background: white;
-        // background: black;
-        height: calc( 100vh - 6.375rem );
+        height: calc( 100vh - 3rem );
         width: 95vw;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         overflow-y: auto;
+        border-style:hidden;
         @include SM{
             width: 75vw;
         }

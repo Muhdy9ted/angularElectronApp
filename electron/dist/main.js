@@ -15,7 +15,7 @@ http.createServer(appServer).listen(3007, function () {
 });
 var win;
 function createWindow() {
-    win = new electron_1.BrowserWindow({ width: 800, height: 600, frame: false,
+    win = new electron_1.BrowserWindow({ width: 800, height: 800, frame: false,
         webPreferences: {
             nativeWindowOpen: true,
         } });

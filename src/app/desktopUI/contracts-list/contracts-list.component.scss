@@ -6,16 +6,20 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        align-items: center;
         height: 100vh;
     }
 
     
     .contract-card{
         background: white;
-        height: calc( 100vh - 6.375rem );
+        height: calc( 100vh - 3rem );
         width: 95vw;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         overflow-y: auto;
+        border-style:hidden;
+        // border-width: medium;
+
         @include SM{
             width: 75vw;
         }

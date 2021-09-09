@@ -9,30 +9,48 @@ import { Contract } from '../../_shared/models/contracts.model'
 export class ContractsListComponent implements OnInit {
 
   contracts: Contract[] = [
-    {
-      contractName: 'The name of the Contract Long',
-      clientName: "Client's Name",
-      hours: "15:00 hrs",
-      limit: "2:00 hrs"
-    },
-    {
-      contractName: 'The name of the Contract Long',
-      clientName: "Client's Name",
-      hours: "15:00 hrs",
-      limit: "no limit"
-    },
-    {
-      contractName: 'The name of the Contract Long is much longer than we expected',
-      clientName: "Client's Name",
-      hours: "15:00 hrs",
-      limit: "2:00 hrs"
-    },
-    {
-      contractName: 'The name of the Contract Long is much longer than we expected',
-      clientName: "Client's Name",
-      hours: "15:00 hrs",
-      limit: "2:00 hrs"
-    }
+    // {
+    //   contractName: 'The name of the Contract Long',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "2:00 hrs"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "no limit"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long is much longer than we expected',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "2:00 hrs"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long is much longer than we expected',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "2:00 hrs"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "no limit"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "no limit"
+    // },
+    // {
+    //   contractName: 'The name of the Contract Long',
+    //   clientName: "Client's Name",
+    //   hours: "15:00 hrs",
+    //   limit: "no limit"
+    // },
   ]
   constructor() { }
 
