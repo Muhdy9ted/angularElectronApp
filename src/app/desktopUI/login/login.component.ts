@@ -84,37 +84,47 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log(this.loginForm)
     if (this.loginForm.valid) {
-      // this.isLoading = true;
+      this.isLoading = true;
       const {username, password} = this.loginForm.value;
       this.user = {username, password}
       this.authService.emailLogin(this.user).subscribe((userCredential) => {
         this.isLoading = false;
-        this.authUser = userCredential
-        this.alertify.success(`Welcome back ${userCredential.email}`);
         this.router.navigate(['/contract-list']);
         this.loginForm.reset()
+        this.alertify.success(`Welcome back ${userCredential.email}`);
+        this.authUser = userCredential
       },errorMessage => {
         console.log(errorMessage)
+        this.isLoading = false;
         this.alertify.error(`${errorMessage}`);
       })
     }
   }
 
   onSubmitFacebook(){
+    this.isLoading = true;
     this.authService.onSubmitFacebook().then((value)=>{
       console.log(value)
-      // this.alertify.success(`Welcome back`);
+      this.isLoading = false;
+      this.router.navigate(['/contract-list'])
+      this.alertify.success(`Welcome back`);
     }).catch(error => {
+      this.isLoading = false;
       console.log(error)
+      this.alertify.error('an unknown error occured, please try again');
     })
   }
 
   onSubmitGoogle(){
+    this.isLoading = true;
     this.authService.onSubmitGoogle().then((value)=>{
+      this.isLoading = false;
       this.router.navigate(['/contract-list'])
       this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
+      this.isLoading = false;
       console.log(error)
+      this.alertify.error('an unknown error occured, please try again');
     })
   }
 

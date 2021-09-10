@@ -12,7 +12,7 @@ import { Contract } from '../../_shared/models/contracts.model'
   styleUrls: ['./contracts-list.component.scss']
 })
 export class ContractsListComponent implements OnInit {
-  contracts: Contract[] = [];
+  contracts: Contract[];
   contract! : Contract;
   term!: string;
   
@@ -21,11 +21,10 @@ export class ContractsListComponent implements OnInit {
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
 
-    // console.log(this.router.data)
-    // this.router.data.subscribe((data: Contract[]) => {
-    //   console.log(data)
-    //   this.contracts = data;
-    // })
+    console.log(this.router.data)
+    this.router.data.subscribe((data) => {
+      this.contracts = data.contracts;
+    })
     // this.fireservice.getContracts().subscribe(contracts => {
     //   console.log(contracts)
     //   this.contracts = contracts
@@ -34,10 +33,10 @@ export class ContractsListComponent implements OnInit {
     // this.router.data.subscribe((data: Contract[]) => {
     //   this.contracts = data;
     // })
-    this.fireservice.getContracts().subscribe(contracts => {
-      console.log(contracts)
-      this.contracts = contracts
-    });
+    // this.fireservice.getContracts().subscribe(contracts => {
+    //   console.log(contracts)
+    //   this.contracts = contracts
+    // });
   }
 
   findWork(){

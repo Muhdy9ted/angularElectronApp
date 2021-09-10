@@ -22,6 +22,7 @@ import { ContractDetailsComponent } from './desktopUI/contract-details/contract-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { GetContractResolver } from './_shared/resolvers/getContract.resolver';
 import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver'
     LoginComponent,
     ContractsListComponent,
     UserNavbarComponent,
-    ContractDetailsComponent
+    ContractDetailsComponent,
+    SpinnerComponent
 
   ],
   imports: [

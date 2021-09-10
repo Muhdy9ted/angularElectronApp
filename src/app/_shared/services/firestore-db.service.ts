@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, from } from 'rxjs';
 import { Contract } from '../models/contracts.model';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
 
@@ -25,11 +25,6 @@ export class FirestoreDbService {
         })
       }
     )); 
-    this.contracts
-  }
-
-  goBack(){
-    this.location.back()
   }
 
   createContract(contract: Contract){
@@ -41,6 +36,11 @@ export class FirestoreDbService {
     return this.contracts;
   }
 
+  getContracts2(){
+    this.fireservice.collection<Contract>('contracts').snapshotChanges().subscribe(res=>{
+      console.log(res)
+    })
+  }
   getContract(contract: Contract){
     return this.fireservice.collection('contracts').doc(`${contract.id}`).valueChanges()
   }
