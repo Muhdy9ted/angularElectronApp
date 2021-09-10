@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounce } from 'lodash';
+import { finalize } from 'rxjs/operators';
 
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 import { FirestoreDbService } from 'src/app/_shared/services/firestore-db.service';
@@ -15,6 +18,11 @@ export class ContractsListComponent implements OnInit {
   contracts: Contract[];
   contract! : Contract;
   term!: string;
+  isLoading: boolean = true;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+
+
   
   constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService, private route: Router, private router: ActivatedRoute) { }
 
@@ -33,10 +41,12 @@ export class ContractsListComponent implements OnInit {
     // this.router.data.subscribe((data: Contract[]) => {
     //   this.contracts = data;
     // })
-    // this.fireservice.getContracts().subscribe(contracts => {
-    //   console.log(contracts)
-    //   this.contracts = contracts
-    // });
+    // this.isLoading = true;
+    this.fireservice.getContracts()
+    .subscribe(contracts => {
+      this.isLoading = false;
+      this.contracts = contracts;
+    });
   }
 
   findWork(){

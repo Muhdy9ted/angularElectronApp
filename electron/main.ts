@@ -20,7 +20,7 @@ console.log(__dirname);
 
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 800, frame: true,
+  win = new BrowserWindow({ width: 500, height: 742, frame: true,
     webPreferences:{
       nativeWindowOpen: true,
     },
@@ -29,11 +29,13 @@ function createWindow() {
   });
 
 
+
   win.loadURL(
     "http://localhost:3007"
   );
 
-  win.setIcon(__dirname + '/assets/logos/gigworks.png')
+  win.setIcon(__dirname + '/assets/logos/gigworks.png');
+  win.setMenu(null);
   win.webContents.openDevTools();
 
   win.on("closed", () => {
