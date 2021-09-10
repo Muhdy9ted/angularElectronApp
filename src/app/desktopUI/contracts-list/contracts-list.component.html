@@ -15,32 +15,18 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="isLoading">
-            <div class="col-12 d-flex justify-content-center mt-5" >
-
-                <div class="spinner-border text-danger" role="status" >
-                    <span class="sr-only"></span>
-                  </div>
-            </div>
-        </div>
-
-
-        <div class="row mt-2">
+        <div class="row" *ngIf="!contracts.length">
             <div class="col-12">
-                <div class="contract-list" *ngIf="!contracts.length">
-                <div class="contract-list" *ngIf="contracts?.length==0 && !isLoading">
-                    <div class="no-contract">
-                        <p class="no-contract-text">You have no open contracts</p>
-                        <button mat-raised-button color="primary" class="button find-work" (click)="findWork()">Find work</button>
-                    </div>
+                <div class="no-contract">
+                    <p class="no-contract-text">You have no open contract</p>
+                    <button mat-raised-button color="primary" class="button find-work" (click)="findWork()">Find work</button>
                 </div>
             </div>
         </div>
 
-        
-        <div class="row">
+        <div class="row" *ngIf="contracts.length">
             <div class="col-12">
-                <div class="contracts-list" *ngIf="contracts.length">
+                <div class="contracts-list">
                     <div class="yes-contracts">
                         <ul class="list-group">
                             <li class="list-group-item" *ngFor="let contract of contracts | filter:term" (click)="contractDetails($event, contract)">
