@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 //modules imports
 import { AppRoutingModule } from '../routing/app.routing.module';
@@ -57,9 +57,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpClientModule,
     Ng2SearchPipeModule,
     AngularFirestoreModule,
+    NgxMaterialTimepickerModule
   ],
 
   providers: [GetContractResolver, GetContractsResolver],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

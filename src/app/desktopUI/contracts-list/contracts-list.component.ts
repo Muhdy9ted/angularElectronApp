@@ -42,11 +42,11 @@ export class ContractsListComponent implements OnInit {
     //   this.contracts = data;
     // })
     // this.isLoading = true;
-    this.fireservice.getContracts()
-    .subscribe(contracts => {
-      this.isLoading = false;
-      this.contracts = contracts;
-    });
+    // this.fireservice.getContracts()
+    // .subscribe(contracts => {
+    //   this.isLoading = false;
+    //   this.contracts = contracts;
+    // });
   }
 
   findWork(){

@@ -10,13 +10,6 @@ import firebase from 'firebase/compat/app';
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 import { Router } from '@angular/router';
 
-
-// XSmall	(max-width: 599.98px)
-// Small	(min-width: 600px) and (max-width: 959.98px)
-// Medium	(min-width: 960px) and (max-width: 1279.98px)
-// Large	(min-width: 1280px) and (max-width: 1919.98px)
-// XLarge	(min-width: 1920px)
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -140,8 +133,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
-  
   onLogout(){
     this.auth.signOut().then(res =>{
       console.log(res)
