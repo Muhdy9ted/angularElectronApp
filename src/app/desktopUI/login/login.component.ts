@@ -80,12 +80,13 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       const {username, password} = this.loginForm.value;
       this.user = {username, password}
-      this.authService.emailLogin(this.user).subscribe((userCredential) => {
+      this.authService.emailLogin(this.user).subscribe((userCredential: any) => {
         this.isLoading = false;
         this.router.navigate(['/contract-list']);
         this.loginForm.reset()
         this.alertify.success(`Welcome back ${userCredential.email}`);
         this.authUser = userCredential
+        localStorage.setItem('user', JSON.stringify(userCredential));
       },errorMessage => {
         console.log(errorMessage)
         this.isLoading = false;
@@ -110,9 +111,11 @@ export class LoginComponent implements OnInit {
 
   onSubmitGoogle(){
     this.isLoading = true;
-    this.authService.onSubmitGoogle().then((value)=>{
+    this.authService.onSubmitGoogle().then((value: any)=>{
       this.isLoading = false;
       this.router.navigate(['/contract-list'])
+      console.log(value)
+      localStorage.setItem('user', JSON.stringify(value));
       this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
       this.isLoading = false;
