@@ -1,0 +1,23 @@
+@use '~@angular/material' as mat;
+@include mat.core();
+
+// $custom-typography: mat-typography-config(
+//     $font-family: 'Gilroy'
+// );
+
+// @include mat.core($custom-typography);
+
+$my-primary: mat.define-palette(mat.$gigwork-primary-palette, 800);
+$my-accent: mat.define-palette(mat.$gigwork-primary-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: $my-primary,
+        accent: $my-accent,
+        warn: $my-warn,
+    )
+));
+
+@include mat.all-component-themes($my-theme);
+

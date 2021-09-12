@@ -1,0 +1,127 @@
+@import "../scss/variables";
+
+
+@include XS{
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0rem 0.1rem;
+
+        @include MD{
+            margin: 0 1rem;
+        }
+    }
+
+    .body-wrapper{
+        // background: #F1F1F1;
+        margin: 0rem 0rem;
+    }
+
+    .horizontal-list{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    ul.horizontal-list{
+        list-style-type: none;
+    }
+
+    .logo{
+        width: 1.3rem;
+        object-fit: contain;
+        height: auto;
+    }
+
+    .logo-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: clamp(1rem, 4vw, 1.8rem);
+        line-height: 150%;
+        color: #212529;
+        opacity: 0.8;
+        margin-left: 0.5rem;
+    }
+
+    .control-icon{
+        vertical-align: -webkit-baseline-middle;
+        padding: 0 1.5rem;
+        cursor: pointer;
+    }
+
+    .control-icon:hover{
+        font-weight: 900;
+        color: gray;
+    }
+
+    .control-icon.close:hover{
+        font-weight: 900;
+        color: red;
+    }
+
+    .control-icon:active, .control-icon.close:active{
+        color: white;
+    }
+}
+
+@include SM{
+    .logo{
+        width: 1.1rem;
+        object-fit: contain;
+        height: auto;
+    }
+
+    .logo-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: clamp(1rem, 2vw, 1.8rem);
+        line-height: 150%;
+        color: #212529;
+        opacity: 0.8;
+        margin-left: 0.5rem;
+    }
+}
+
+@include MD{
+    .logo-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: clamp(0.9rem, 2vw, 1.8rem);
+        line-height: 150%;
+        color: #212529;
+        opacity: 0.8;
+        margin-left: 0.5rem;
+    }
+}
+
+@include LG{
+    .logo-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+        line-height: 150%;
+        color: #212529;
+        opacity: 0.8;
+        margin-left: 0.5rem;
+    }
+}
+
+@include XXL{
+    .logo-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: clamp(0.7rem, 1vw, 1rem);
+        line-height: 150%;
+        color: #212529;
+        opacity: 0.8;
+        margin-left: 0.5rem;
+    }
+}

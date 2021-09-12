@@ -1,0 +1,74 @@
+<div class="container-fluid wrapper">
+    <mat-card class="contract-card mat-elevation-z0">
+        <div class="row">
+            <div class="col-12">
+                <app-user-navbar></app-user-navbar>
+                <div class="contract-title-section">
+                    <hr class="hr" />
+                    <div class="title-section" >
+                        <mat-icon style="cursor:pointer;" aria-hidden="false" aria-label="keyboard_arrow_left icon" class="control-icon" (click)="goBack()">keyboard_arrow_left</mat-icon>
+                        <div class="contract-title-block">
+                            <p class="contract-title">{{contract?.contractName}}</p>
+                            <p class="client-name">{{contract?.clientName}}</p>
+                        </div>
+                    </div>
+                    <hr class="hr" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="timer">
+                    <div class="counter">
+                        <div class="current-session">
+                            <p class="current-session-title">Current session</p>
+                            <p class="time">0hrs 00m</p>
+                        </div>
+                        <div class="today">
+                            <p class="today-title">Today</p>
+                            <p class="today-text">5:00 hrs</p>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button mat-raised-button color="primary" class="button start-button">
+                            Start <span><mat-icon aria-hidden="false" aria-label="play icon" class="button-icon">play_arrow</mat-icon></span>
+                        </button>
+                        <div class="week">
+                            <p class="week-title">This week</p>
+                            <p class="week-text">{{contract?.hours}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="memo-section">
+                    <p class="memo-title">Memo</p>
+                    <form>
+                        <mat-form-field appearance="outline" class="memo-input">
+                            <mat-label>Add a memo</mat-label>
+                            <textarea matInput class="input"></textarea>
+                        </mat-form-field>
+                    </form>  
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="others-section">
+                    <button mat-button color="primary" class="others-button">
+                        Add manual time<span><img src="assets/logos/manual-time-icon.svg" class="button-icon"/></span>
+                    </button>
+                    <button mat-button color="primary" class="others-button">
+                        Manage work diary <span><img src="assets/logos/calendar-icon.svg" class="button-icon"/></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <div>
+
+    </div>
+</div>

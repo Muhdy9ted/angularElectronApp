@@ -1,0 +1,50 @@
+@import "../../../scss/variables";
+
+@include XS{
+    .navbar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .user-section{
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .user-icon{
+            margin-right: 0.5rem;
+            width: 3rem;
+
+        }
+
+        .user-name{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: $XSTitleSize;
+            color: #212529;
+            margin-top: 0.9rem;
+
+            @include SM{
+                font-size: $SMFontSize;
+            }
+        }
+
+        // .settings-section{
+
+        // }
+
+        .settings-icon{
+            font-size: 2.1rem;
+            margin-right: 2rem;
+        }
+    }
+}
+@include SM{}
+@include MD{}
+@include LG{}
+@include XL{}
+@include XXL{}

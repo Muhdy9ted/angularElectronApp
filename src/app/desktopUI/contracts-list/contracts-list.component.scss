@@ -1,0 +1,219 @@
+@import "../../../scss/variables";
+
+@include XS{
+
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    
+    .contract-card{
+        background: white;
+        height: calc( 100vh - 3rem );
+        width: 95vw;
+        margin-top: 0.5rem;
+        overflow-y: auto;
+        border-style:hidden;
+        // border-width: medium;
+
+        @include SM{
+            width: 75vw;
+        }
+
+        @include MD{
+            width: 90vw;
+        }
+
+        @include LG{
+            width: 60vw;
+        }
+
+        @include XL{}
+
+        @include XXL{
+            width: 50vw;
+        }
+    }
+
+    .has-search .form-control {
+        padding-left: 2.575rem;
+        border-radius: 1.4rem;
+    }
+
+    .has-search .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+        margin-top: 0.4rem;
+        padding-left: 1rem;
+
+    }
+
+    input{
+        background-color:  #F4F4F4;
+    }
+
+    hr.hr {
+        border-top: 1px solid #898989;
+        margin: 1rem 0;
+    }
+
+    .hour-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        font-size: $XSFontSize;
+        line-height: 19px;
+        color: #898989;
+        margin-bottom: -0.9rem;
+        margin-top: 1rem;
+        text-align: right;
+
+        @include SM{
+            font-size: $SMFontSize;
+        }
+        @include MD{
+            font-size: $MDFontSize;
+        }
+        @include LG{
+            font-size: $LGFontSize;
+        }
+        @include XL{
+            font-size: $XLFontSize;
+        }
+    }
+
+    .contract-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 45vh;
+
+        .no-contract{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contract-text{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            color: #212529;
+            @include SM{
+                font-size: $SMFontSize;
+            }
+            @include MD{
+                font-size: $MDFontSize;
+            }
+            @include LG{
+                font-size: $LGFontSize;
+            }
+            @include XL{
+                font-size: $XLFontSize;
+            }
+        }
+
+        .find-work{
+            width: 100%;
+            padding-top: 0.2rem;
+            padding-bottom: 0.2rem;
+            background-color: #FD6642;
+            border: 1px solid #FD6642;
+
+        }
+    }
+
+    .yes-contracts{
+        margin-top: 1rem;
+    }
+
+    .contracts-list{
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #212529;
+            text-decoration: none;
+            background-color: #fff;
+            border-top: 1px solid rgba(0, 0, 0, 0.125);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-right: none;
+            border-left: none;
+            cursor: pointer;
+        }
+
+        .list-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .first-row{
+            margin-bottom: 0.2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .first-row-text{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #212529;
+        }
+
+        .second-row{
+            margin-bottom: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .second-row-text{
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #898989;
+        }
+    }
+
+    /* unvisited link */
+    a:link {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* visited link */
+    a:visited {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* mouse over link */
+    a:hover {
+        color: $text-color;
+        text-decoration: none;
+    }
+    
+    /* selected link */
+    a:active {
+        color: $text-color;
+        text-decoration: none;
+    }
+}

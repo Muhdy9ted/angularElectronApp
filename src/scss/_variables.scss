@@ -1,0 +1,127 @@
+// $primary: #F29422;
+$text-color: #212529;
+$heading-color: #000000;
+
+$XSFontSize: clamp(1rem, 3.5vw, 1.5rem); 
+$XSTitleSize: clamp(1.2rem, 3.5vw, 2rem);
+$SMFontSize: clamp(0.7rem, 2.5vw, 0.875rem);
+$MDFontSize: clamp(0.9rem, 2vw, 1rem);
+$LGFontSize: clamp(1rem, 2vw, 1rem);
+$XLFontSize: clamp(1rem, 1.8vw, 1.125rem);
+$XXLFontSize: clamp(1rem, 1.8vw, 1.125rem);
+
+
+
+
+// @include XS{}
+// @include SM{}
+// @include MD{}
+// @include LG{}
+// @include XL{}
+// @include XXL{}
+
+$widthXS: 1px;
+$widthSM: 576px;
+$widthMD: 768px;
+$widthLG: 992px;
+$widthXL: 1200px;
+$widthXXL: 1400px;
+ 
+/* XS Screen range */
+@mixin XS {
+    @media (min-width:$widthXS) {
+       @content;
+    }
+}
+
+@mixin XS-SM {
+    @media (min-width:$widthXS) and (max-width:575.9px) { 
+       @content;
+    }
+}
+
+@mixin XS-MD {
+    @media (min-width:$widthXS) and (max-width:767.9px) {
+       @content;
+    }
+}
+
+@mixin XS-LG {
+    @media (min-width:$widthXS) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+/* SM Screen range */
+@mixin SM {
+    @media (min-width:$widthSM) {
+       @content;
+    }
+}
+
+@mixin SM-MD {
+    @media (min-width:$widthSM) and (max-width:767.9px) {
+       @content;
+    }
+}
+
+@mixin SM-LG {
+    @media (min-width:$widthSM) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+/* MD Screen range */
+@mixin MD {
+    @media (min-width:$widthMD) {
+       @content;
+    }
+}
+
+@mixin MD-LG {
+    @media (min-width:$widthMD) and (max-width:991.9px) {
+       @content;
+    }
+}
+
+@mixin MD-XL {
+    @media (min-width:$widthMD) and (max-width:1199.9px) {
+       @content;
+    }
+}
+
+/* LG Screen range */
+@mixin LG {
+    @media (min-width:$widthLG) {
+       @content;
+    }
+}
+
+@mixin LG-XL {
+    @media (min-width:$widthLG) and (max-width:1199.9px) {
+       @content;
+    }
+}
+
+/* XL Screen range */
+@mixin XL {
+    @media (min-width:$widthXL) {
+       @content;
+    }
+}
+
+@mixin XL-XXL {
+    @media (min-width:$widthXL) and (max-width:1399.9px) {
+       @content;
+    }
+}
+
+/* XXL Screen range*/
+@mixin  XXL {
+    @media (min-width: $widthXXL){
+        @content
+    }
+}
+
+
+
