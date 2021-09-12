@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       const {username, password} = this.loginForm.value;
       this.user = {username, password}
-      this.authService.emailLogin(this.user).subscribe((userCredential) => {
+      this.authService.emailLogin(this.user).subscribe((userCredential: any) => {
         this.isLoading = false;
         this.router.navigate(['/contract-list']);
         this.loginForm.reset()
