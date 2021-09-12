@@ -53,6 +53,8 @@ export class ContractDetailsComponent implements OnInit {
   timerDisplay: any;
   stopWatch = timer(0, 1000);
   currentCount: any;
+  tiredAf;
+  isLoading: boolean = false;
 
   @ViewChild('timerCounter') timerCounter: ElementRef
   contract: any;
@@ -61,16 +63,32 @@ export class ContractDetailsComponent implements OnInit {
   sec: any = 0;
   stoptime = true;
 
-  constructor(private firestore: AngularFirestore, private route: ActivatedRoute, private router: Router, private readonly location: Location, private alertify: AlertifyService) { }
+  constructor(private firestore: AngularFirestore, private route: ActivatedRoute, private router: Router, private readonly location: Location, private alertify: AlertifyService,  private actRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.firestore.collection('contracts').doc(`${this.route.snapshot.params.contractId}`).valueChanges().subscribe(
       response => {
         console.log(response)
         this.contract = response;
+        this.isLoading = false;
       }
     )
 
+    setTimeout(()=>{
+      if(!this.contract){
+        this.isLoading = true
+      }
+    }, 1000)
+
+    if(this.contract){
+      this.isLoading = false;
+    }
+
+    // this.actRouter.data.subscribe((data) => {
+    //   this.contract = data.contract;
+    //   console.log(this.contract)
+    // })
+    
     this.addManualForm = new FormGroup({
       date: new FormControl(this.date, [Validators.required]),
       time1: new FormControl('', [Validators.required]),
@@ -84,7 +102,7 @@ export class ContractDetailsComponent implements OnInit {
     if(this.addManualForm.valid){
       let{date, time1, time2 ,memo } = this.addManualForm.value
       date = moment(date).format('MMM Do YYYY')
-      console.log(date, time1,time2);
+      // console.log(date, time1,time2);
       let time1Test = time1.split(' ')
       let time1Test2 = time1.split(':');
       let time1Final;
@@ -93,7 +111,7 @@ export class ContractDetailsComponent implements OnInit {
       }else{
         time1Final = parseInt(time1Test2[0])
       }
-      console.log(time1Final);
+      // console.log(time1Final);
       let time2Test = time2.split(' ')
       let time2Test2 = time2.split(':');
       let time2Final;
@@ -102,15 +120,15 @@ export class ContractDetailsComponent implements OnInit {
       }else{
         time2Final = parseInt(time2Test2[0])
       }
-      console.log(time2Final);
+      // console.log(time2Final);
       
       // time2 = moment(time2)
-      console.log(time1, time2)
+      // console.log(time1, time2)
       if(time1Final > time2Final){
         this.alertify.error('enter a valid time range')
       }else{
         let data = {date, time1, time2, memo}
-        console.log(data)
+        // console.log(data)
         this.alertify.success('Memo saved successfully')
         this.addManualForm.reset()
       }
@@ -131,42 +149,27 @@ export class ContractDetailsComponent implements OnInit {
 
   goBack() {
     this.location.back()
-    // this.router.navigate(['.'], { relativeTo: this.route.parent });
+    // this.router.navigate(['/contract-list']).then(()=>{
+    //   window.location.reload();
+    // });  
   }
-/*
-import { timer } from 'rxjs';
 
-  timer takes a second argument, how often to emit subsequent values
-  in this case we will emit first value after 1 second and subsequent
-  values every 2 seconds after
-
-const source = timer(1000, 2000);
-//output: 0,1,2,3,4,5......
-const subscribe = source.subscribe(val => console.log(val));
-*/
 
   startTimer() {
     this.startTimerButton = true;
     this.time = 0
-    // this.stopWatch = null;
-    // this.stopWatch = timer(0, 100)
-    this.stopWatch.subscribe(ec => {
+    this.tiredAf = this.stopWatch.subscribe(ec => {
       this.time++;
       this.timerDisplay = this.getDisplayTimer(this.time);
     });
-    // if (this.stoptime === true) {
-    //   console.log('timer clicked')
-    //   this.stoptime = false;
-    //   this.timerCycle();
-    // }
   }
 
   stopTimer(){
-    let numb = of(this.stopWatch);
-    // this.stopWatch=null
-    console.log(numb)
     this.startTimerButton = false;
-    console.log(this.timerDisplay)
+    this.tiredAf.unsubscribe()
+    let numb = of(this.stopWatch);
+    // console.log(numb)
+    // console.log(this.timerDisplay)
   }
 
   getDisplayTimer(time: number) {
@@ -174,12 +177,12 @@ const subscribe = source.subscribe(val => console.log(val));
     const minutes = '0' + Math.floor(time % 3600 / 60);
     const seconds = '' + Math.floor(time % 3600 % 60);
 
-    console.log(hours, minutes, seconds)
+    // console.log(hours, minutes, seconds)
     if(this.startTimerButton){
-      this.timerCounter.nativeElement.innerHTML = `${hours}hrs ${minutes}mn ${seconds}sec`
-      this.currentCount = `${hours}hrs ${minutes}mn ${seconds}sec`
+      this.timerCounter.nativeElement.innerHTML = `${hours}hrs ${minutes}m ${seconds}sec`
+      this.currentCount = `${hours}hrs ${minutes}m ${seconds}sec`
     }else{
-      this.timerCounter.nativeElement.innerHTML = `00hrs 00mn 00sec`
+      this.timerCounter.nativeElement.innerHTML = `00hrs 00m 00sec`
     }
 
 

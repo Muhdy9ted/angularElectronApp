@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm)
+    // console.log(this.loginForm)
     if (this.loginForm.valid) {
       this.isLoading = true;
       const {username, password} = this.loginForm.value;
@@ -84,10 +84,13 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.router.navigate(['/contract-list']);
         this.loginForm.reset()
+        // let usercred = userCredential.displayName || userCredential.email
         this.alertify.success(`Welcome back ${userCredential.email}`);
         this.authUser = userCredential
+        localStorage.setItem('firebaseEmailPasswordLogin', JSON.stringify(this.authUser))
+        // console.log(this.authUser)
       },errorMessage => {
-        console.log(errorMessage)
+        // console.log(errorMessage)
         this.isLoading = false;
         this.alertify.error(`${errorMessage}`);
       })
@@ -97,44 +100,61 @@ export class LoginComponent implements OnInit {
   onSubmitFacebook(){
     this.isLoading = true;
     this.authService.onSubmitFacebook().then((value)=>{
-      console.log(value)
+      // console.log(value)
+      if(value.user){
+        this.router.navigate(['/contract-list'])
+        this.alertify.success(`Welcome back ${value.user.displayName}`);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
       this.isLoading = false;
-      this.router.navigate(['/contract-list'])
-      this.alertify.success(`Welcome back`);
     }).catch(error => {
       this.isLoading = false;
-      console.log(error)
-      this.alertify.error('an unknown error occured, please try again');
+      // console.log(error.message)
+      if(error.message){
+        this.alertify.error(error.message);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
     })
   }
 
   onSubmitGoogle(){
     this.isLoading = true;
     this.authService.onSubmitGoogle().then((value)=>{
+      // console.log(value)
+      if(value.user){
+        this.router.navigate(['/contract-list'])
+        this.alertify.success(`Welcome back ${value.user.displayName}`);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
       this.isLoading = false;
-      this.router.navigate(['/contract-list'])
-      this.alertify.success(`Welcome back ${value.user.displayName}`);
     }).catch(error => {
       this.isLoading = false;
-      console.log(error)
-      this.alertify.error('an unknown error occured, please try again');
+      // console.log(error.message)
+      if(error.message){
+        this.alertify.error(error.message);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
     })
   }
 
   onSubmitApple(){
     this.authService.onSubmitApple().then((value)=>{
       this.router.navigate(['/', 'contract-list'])
-      console.log(value)
+      // console.log(value)
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
     })
   }
 
   onLogout(){
     this.auth.signOut().then(res =>{
-      console.log(res)
+      // console.log(res)
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
     })
 
     this.loginForm.reset()

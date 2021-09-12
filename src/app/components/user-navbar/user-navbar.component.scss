@@ -27,6 +27,7 @@
             font-size: $XSTitleSize;
             color: #212529;
             margin-top: 0.9rem;
+            margin-left: 0.5rem;
 
             @include SM{
                 font-size: $SMFontSize;
@@ -41,6 +42,14 @@
             font-size: 2.1rem;
             margin-right: 2rem;
         }
+    }
+
+    .user-icon-btn{
+        width: 4rem;
+    }
+
+    .user-icon-btn:hover{
+        background-color: none;
     }
 }
 @include SM{}
