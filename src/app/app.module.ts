@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {PopoverModule} from "ngx-smart-popover";
+
 
 //modules imports
 import { AppRoutingModule } from '../routing/app.routing.module';
@@ -57,7 +59,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpClientModule,
     Ng2SearchPipeModule,
     AngularFirestoreModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    PopoverModule,
   ],
 
   providers: [GetContractResolver, GetContractsResolver],

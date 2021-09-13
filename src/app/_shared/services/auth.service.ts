@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { EmailLogin } from '../models/email-login.model';
 import { AuthResponse } from '../models/firebase-auth-response.model';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
@@ -29,7 +29,7 @@ export class AuthService {
   constructor(public http: HttpClient, public auth: AngularFireAuth) {
     this.auth.authState.subscribe(authState => {
       this.authUser = authState
-      console.log(this.authUser)
+      // console.log(this.authUser)
     })
    }
 
@@ -57,46 +57,91 @@ export class AuthService {
     }, httpOptions).pipe(catchError(this.handleError))
   }
 
+  // onSubmitFacebook(){
+  //   return this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((value: firebase.auth.UserCredential) => {
+  //     console.log(value)
+  //     return value
+  //   }).catch(function(error) {
+  //     if (error.code == 'auth/account-exists-with-different-credential') {
+  //       let existingEmail = error.email;
+  //       let pendingCred = error.credential;
+  //       this.auth.fetchSignInMethodsForEmail(existingEmail).then(function(methods){
+  //         if (methods[0] === 'password') {
+  //           var password = window.prompt(`Please provide the password for ${existingEmail}`)
+  //           this.auth.signInWithEmailAndPassword(existingEmail, password).then(function(result) {
+  //             return result.user.linkWithCredential(pendingCred);
+  //           }).then(function() {
+  //             return firebase.auth().signInWithEmailAndPassword(existingEmail, password);
+  //           });
+  //           return ;
+  //         }
+  //       });
+  //     });
+  // }
+
   onSubmitFacebook(){
     return this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((value: firebase.auth.UserCredential) => {
-      console.log(value)
-      return value
-    }).catch(error => {
-      console.log(error)
-      return error
-    })
+      return value;
+    }).catch(function(error) {
+      // console.log(error)
+      if (error.code == 'auth/account-exists-with-different-credential') {
+        var existingEmail = error.email;
+        var pendingCred = error.credential;
+        return firebase.auth().fetchSignInMethodsForEmail(error.email)
+        .then(function(providers){
+          if (providers[0] === 'password') {
+            var password = window.prompt(`${existingEmail} already exist, provide the password to continue`);
+          }
+          return firebase.auth().signInWithEmailAndPassword(existingEmail, password).then(result =>{
+            // console.log(result)
+            return result.user.linkWithCredential(pendingCred)
+          })    
+        })
+      }
+      throw error;
+    });
   }
-
-  // onfacebook(){
-  //   return this.auth.createUserWithEmailAndPassword
-  // }
 
   onSubmitGoogle(){
     return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((value: firebase.auth.UserCredential) => {
-      console.log(value)
+      // console.log(value)
       return value
-    }).catch(error => {
-      console.log(error)
-      return error
-    })
+    }).catch(function(error) {
+      // console.log(error)
+      if (error.code == 'auth/account-exists-with-different-credential') {
+        var existingEmail = error.email;
+        var pendingCred = error.credential;
+        return firebase.auth().fetchSignInMethodsForEmail(error.email)
+        .then(function(providers){
+          if (providers[0] === 'password') {
+            var password = window.prompt(`${existingEmail} already exist, provide the password to continue`);
+          }
+          return firebase.auth().signInWithEmailAndPassword(existingEmail, password).then(result =>{
+            // console.log(result)
+            return result.user.linkWithCredential(pendingCred)
+          })    
+        })
+      }
+      throw error;
+    });
   }
 
   onSubmitGoogleDesktop(){
     return this.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()).then((value)=>{
-      console.log(value)
+      // console.log(value)
       return value
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
       return error
     })
   }
 
   onSubmitApple(){
     return this.auth.signInWithPopup(new firebase.auth.OAuthProvider('apple.com')).then((value: firebase.auth.UserCredential) => {
-      console.log(value)
+      // console.log(value)
       return value
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
       return error
     })
   }

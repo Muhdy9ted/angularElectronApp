@@ -1,17 +1,21 @@
 import { Injectable } from "@angular/core";
-import { DocumentSnapshot } from "@angular/fire/compat/firestore";
-import { ActivatedRouteSnapshot, Resolve, Router } from "@angular/router";
+import { AngularFirestore, DocumentSnapshot } from "@angular/fire/compat/firestore";
+import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
 import { Contract } from "../models/contracts.model";
 import { FirestoreDbService } from "../services/firestore-db.service";
 
 @Injectable()
 export class GetContractResolver implements Resolve<Contract>{
     
-    constructor(private firestoreService: FirestoreDbService, private router: Router){}
+    constructor(private firestoreService: FirestoreDbService, private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute){}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<any>{
-        console.log(route.params)
-        return this.firestoreService.getContract(route.params.contractId);
+    resolve(route: ActivatedRouteSnapshot): Observable<Contract>{
+        return this.firestore.collection<Contract>('contracts').doc(`${this.route.snapshot.params.contractId}`).valueChanges();
     }
 }
+
+// resolve():any{
+//     return this.firestoreService.getContracts().pipe(take(1));
+// }

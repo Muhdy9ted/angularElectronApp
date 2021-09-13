@@ -7,7 +7,7 @@ var win;
 // process.env.NODE_ENV = 'production'
 
 function createWindow () {
-    console.log(__dirname+'/assets/logos/gigwork-logo.svg')
+    // console.log(__dirname+'/assets/logos/gigwork-logo.svg')
     win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -114,7 +114,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 //catch item:add event from addWindow.html's form
 ipcMain.on('item:add', function(e, item){
-    console.log(item)
+    // console.log(item)
     //send it to the mainwindow
     win.webContents.send('item:add', item)
     addWindow.close()

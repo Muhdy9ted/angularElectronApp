@@ -9,15 +9,15 @@ export class AppComponent {
   title = 'gigworks-desktop';
 
   minimizeWindow(){
-    console.log('minimized')
+    // console.log('minimized')
   }
 
   maximizeWindow(){
-    console.log('maximized')
+    // console.log('maximized')
   }
 
 
   closeWindow(){
-    console.log('window closed')
+    // console.log('window closed')
   }
 }

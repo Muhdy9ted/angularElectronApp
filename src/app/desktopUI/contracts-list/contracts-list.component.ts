@@ -21,22 +21,35 @@ export class ContractsListComponent implements OnInit {
   isLoading: boolean = true;
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
-
+  initialIsLoadingDone = false
 
   
   constructor( private fireservice: FirestoreDbService, private alertify: AlertifyService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.searchTerm = debounce(this.searchTerm.bind(this), 500)
+    this
 
-    console.log(this.router.data)
-    this.router.data.subscribe((data) => {
-      this.contracts = data.contracts;
-    })
-    // this.fireservice.getContracts().subscribe(contracts => {
-    //   console.log(contracts)
-    //   this.contracts = contracts
-    // });
+    // console.log(this.router.data)
+    // this.router.data.subscribe((data) => {
+    //   this.contracts = data.contracts;
+    // })
+    this.fireservice.getContracts().subscribe(contracts => {
+      // console.log(contracts)
+      this.contracts = contracts
+      // this.isLoading = false;
+
+      setTimeout(()=>{
+        if(this.contracts !== undefined){
+          this.isLoading = false
+          this.initialIsLoadingDone = true;
+        }
+      }, 2000)
+  
+      // if(this.contracts !== undefined){
+      //   this.isLoading = false;
+      // }
+    });
 
     // this.router.data.subscribe((data: Contract[]) => {
     //   this.contracts = data;
@@ -61,18 +74,18 @@ export class ContractsListComponent implements OnInit {
       limit: 'no limit'
     }
     this.fireservice.createContract(contract).then((res) =>{
-      console.log(res)
+      // console.log(res)
     }).catch((error)=>{
-      console.log(error)
+      // console.log(error)
     })
   }
 
   updateContract(event: any, contract: Contract){
     this.fireservice.updateContract(contract).then(res => {
       this.alertify.success('the contract has been successfully updated');
-      console.log(res);
+      // console.log(res);
     }).catch(error =>{
-      console.log(error)
+      // console.log(error)
     });
   }
 
