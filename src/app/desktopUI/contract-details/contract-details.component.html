@@ -1,4 +1,5 @@
 <div class="container-fluid wrapper">
+    <app-spinner *ngIf="isLoading"></app-spinner>
     <mat-card class="contract-card mat-elevation-z0">
         <div class="row">
             <div class="col-12">
@@ -6,7 +7,7 @@
                 <div class="contract-title-section">
                     <hr class="hr" />
                     <div class="title-section" >
-                        <mat-icon style="cursor:pointer;" aria-hidden="false" aria-label="keyboard_arrow_left icon" class="control-icon" (click)="goBack()">keyboard_arrow_left</mat-icon>
+                        <mat-icon style="cursor:pointer;" *ngIf="contract" aria-hidden="false" aria-label="keyboard_arrow_left icon" class="control-icon" (click)="goBack()">keyboard_arrow_left</mat-icon>
                         <div class="contract-title-block">
                             <p class="contract-title">{{contract?.contractName}}</p>
                             <p class="client-name">{{contract?.clientName}}</p>
@@ -16,13 +17,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row" *ngIf="!manual">
             <div class="col-12">
                 <div class="timer">
                     <div class="counter">
                         <div class="current-session">
                             <p class="current-session-title">Current session</p>
-                            <p class="time">0hrs 00m</p>
+                            <p class="time" #timerCounter id="timer">0hrs 00m 00s</p>
                         </div>
                         <div class="today">
                             <p class="today-title">Today</p>
@@ -30,8 +32,11 @@
                         </div>
                     </div>
                     <div class="button">
-                        <button mat-raised-button color="primary" class="button start-button">
+                        <button mat-raised-button color="primary" class="button start-button" (click)="startTimer()" *ngIf="!startTimerButton">
                             Start <span><mat-icon aria-hidden="false" aria-label="play icon" class="button-icon">play_arrow</mat-icon></span>
+                        </button>
+                        <button mat-raised-button class="button stop-button" (click)="stopTimer()" *ngIf="startTimerButton">
+                            Stop <span><mat-icon aria-hidden="false" aria-label="play icon" class="button-icon">stop</mat-icon></span>
                         </button>
                         <div class="week">
                             <p class="week-title">This week</p>
@@ -41,29 +46,68 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="memo-section">
-                    <p class="memo-title">Memo</p>
-                    <form>
-                        <mat-form-field appearance="outline" class="memo-input">
-                            <mat-label>Add a memo</mat-label>
-                            <textarea matInput class="input"></textarea>
+
+        <form [formGroup]="addManualForm">
+            <div class="row" *ngIf="manual"  [formGroup]="addManualForm">
+                <div class="col-12"  [formGroup]="addManualForm">
+                    <div class="manual-section"  [formGroup]="addManualForm">
+                        <mat-form-field appearance="outline" color="primary" class="">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="picker1" [formControl]="date" class="date-picker-input" [max]="today" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
-                    </form>  
+
+                        <div class="time-picker">
+                            <mat-form-field appearance="outline" class="timer-input">
+                                <mat-label>hh:mm</mat-label>
+                                <input type="text" matInput placeholder="hh:mm" [ngxTimepicker]="picker" formControlName="time1">
+                                <ngx-material-timepicker #picker></ngx-material-timepicker>
+                                <mat-icon matSuffix>access_time</mat-icon>
+                                <ngx-material-timepicker #picker></ngx-material-timepicker>
+                            </mat-form-field>
+                            <p class="timer-to">to</p>
+                            <mat-form-field appearance="outline" class="timer-input">
+                                <mat-label>hh:mm</mat-label>
+                                <input type="text" matInput placeholder="hh:mm" [ngxTimepicker]="picker2" formControlName="time2">
+                                <mat-icon matSuffix>access_time</mat-icon>
+                                <ngx-material-timepicker #picker2></ngx-material-timepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row"  [formGroup]="addManualForm">
+                <div class="col-12"  [formGroup]="addManualForm">
+                    <div class="memo-section"  [formGroup]="addManualForm">
+                        <p class="memo-title">Memo</p>
+                            <mat-form-field appearance="outline" class="memo-input">
+                                <mat-label>Add a memo</mat-label>
+                                <textarea matInput class="input" formControlName="memo"></textarea>
+                            </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-        <div class="row">
+        <div class="row" *ngIf="othersSection">
             <div class="col-12">
                 <div class="others-section">
-                    <button mat-button color="primary" class="others-button">
+                    <button mat-button color="primary" class="others-button" (click)="manualLabour()">
                         Add manual time<span><img src="assets/logos/manual-time-icon.svg" class="button-icon"/></span>
                     </button>
                     <button mat-button color="primary" class="others-button">
                         Manage work diary <span><img src="assets/logos/calendar-icon.svg" class="button-icon"/></span>
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="manual">
+            <div class="col-12">
+                <div class="manual-buttons">
+                    <button mat-raised-button color="primary" class="manual-button" (click)="onSubmitAddMaualForm()">Save</button>
+                    <button mat-button color="primary" class="manual-button ml-3" (click)="cancelManual()">Cancel</button>
                 </div>
             </div>
         </div>

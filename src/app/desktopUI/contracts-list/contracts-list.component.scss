@@ -93,47 +93,48 @@
         }
     }
 
-    .contract-list{
+    .no-contract{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 45vh;
+        height: 55vh;
+    }
 
-        .no-contract{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+
+    .contract-text{
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 500;
+        color: #212529;
+        @include SM{
+            font-size: $SMFontSize;
         }
-
-        .contract-text{
-            font-family: Gilroy;
-            font-style: normal;
-            font-weight: 500;
-            color: #212529;
-            @include SM{
-                font-size: $SMFontSize;
-            }
-            @include MD{
-                font-size: $MDFontSize;
-            }
-            @include LG{
-                font-size: $LGFontSize;
-            }
-            @include XL{
-                font-size: $XLFontSize;
-            }
+        @include MD{
+            font-size: $MDFontSize;
         }
-
-        .find-work{
-            width: 100%;
-            padding-top: 0.2rem;
-            padding-bottom: 0.2rem;
-            background-color: #FD6642;
-            border: 1px solid #FD6642;
-
+        @include LG{
+            font-size: $LGFontSize;
         }
+        @include XL{
+            font-size: $XLFontSize;
+        }
+    }
+
+    .find-work{
+        width: 50%;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        background-color: #FD6642;
+        border: 1px solid #FD6642;
+
+    }
+
+    .no-contract-text{
+        font-weight: 600;
+        font-family: Gilroy;
+        font-style: normal;
+        font-size: 1rem;
     }
 
     .yes-contracts{
@@ -160,7 +161,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: stretch;
+            width: 98%;
         }
+
+
 
         .first-row{
             margin-bottom: 0.2rem;
@@ -215,5 +219,20 @@
     a:active {
         color: $text-color;
         text-decoration: none;
+    }
+
+    .contact-link{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .next-page{
+        width: 2%;
+        margin-left: 0.3rem;
+        cursor: pointer;
+        font-size: 2rem;
+        align-self: flex-start;
+        color: #898989;
     }
 }

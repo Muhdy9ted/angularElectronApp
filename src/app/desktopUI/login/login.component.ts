@@ -10,13 +10,6 @@ import firebase from 'firebase/compat/app';
 import { AlertifyService } from 'src/app/_shared/services/alertify.service';
 import { Router } from '@angular/router';
 
-
-// XSmall	(max-width: 599.98px)
-// Small	(min-width: 600px) and (max-width: 959.98px)
-// Medium	(min-width: 960px) and (max-width: 1279.98px)
-// Large	(min-width: 1280px) and (max-width: 1919.98px)
-// XLarge	(min-width: 1920px)
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -82,58 +75,86 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm)
+    // console.log(this.loginForm)
     if (this.loginForm.valid) {
-      // this.isLoading = true;
+      this.isLoading = true;
       const {username, password} = this.loginForm.value;
       this.user = {username, password}
-      this.authService.emailLogin(this.user).subscribe((userCredential) => {
+      this.authService.emailLogin(this.user).subscribe((userCredential: any) => {
         this.isLoading = false;
-        this.authUser = userCredential
-        this.alertify.success(`Welcome back ${userCredential.email}`);
         this.router.navigate(['/contract-list']);
         this.loginForm.reset()
+        // let usercred = userCredential.displayName || userCredential.email
+        this.alertify.success(`Welcome back ${userCredential.email}`);
+        this.authUser = userCredential
+        localStorage.setItem('firebaseEmailPasswordLogin', JSON.stringify(this.authUser))
+        // console.log(this.authUser)
       },errorMessage => {
-        console.log(errorMessage)
+        // console.log(errorMessage)
+        this.isLoading = false;
         this.alertify.error(`${errorMessage}`);
       })
     }
   }
 
   onSubmitFacebook(){
+    this.isLoading = true;
     this.authService.onSubmitFacebook().then((value)=>{
-      console.log(value)
-      // this.alertify.success(`Welcome back`);
+      // console.log(value)
+      if(value.user){
+        this.router.navigate(['/contract-list'])
+        this.alertify.success(`Welcome back ${value.user.displayName}`);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
+      this.isLoading = false;
     }).catch(error => {
-      console.log(error)
+      this.isLoading = false;
+      // console.log(error.message)
+      if(error.message){
+        this.alertify.error(error.message);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
     })
   }
 
   onSubmitGoogle(){
+    this.isLoading = true;
     this.authService.onSubmitGoogle().then((value)=>{
-      this.router.navigate(['/contract-list'])
-      this.alertify.success(`Welcome back ${value.user.displayName}`);
+      // console.log(value)
+      if(value.user){
+        this.router.navigate(['/contract-list'])
+        this.alertify.success(`Welcome back ${value.user.displayName}`);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
+      this.isLoading = false;
     }).catch(error => {
-      console.log(error)
+      this.isLoading = false;
+      // console.log(error.message)
+      if(error.message){
+        this.alertify.error(error.message);
+      }else{
+        this.alertify.error('an unknown error occured, please try again');
+      }
     })
   }
 
   onSubmitApple(){
     this.authService.onSubmitApple().then((value)=>{
       this.router.navigate(['/', 'contract-list'])
-      console.log(value)
+      // console.log(value)
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
     })
   }
 
-
-  
   onLogout(){
     this.auth.signOut().then(res =>{
-      console.log(res)
+      // console.log(res)
     }).catch(error => {
-      console.log(error)
+      // console.log(error)
     })
 
     this.loginForm.reset()

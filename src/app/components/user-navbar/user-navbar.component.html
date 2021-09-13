@@ -1,6 +1,16 @@
 <div class="navbar">
     <div class="user-section">
-        <img src="assets/logos/user-icon.svg" class="user-icon" />
+        <button mat-button [matMenuTriggerFor]="menu" class="user-icon-btn" [disableRipple]="true">
+            <img src="assets/logos/user-icon.svg" class="user-icon"/>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item color="primary" class="button google-login" (click)="onLogout($event)">Signout </button>
+        </mat-menu>
+        <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-raised-button mat-menu-item color="primary" class="button google-login" (click)="onLogout($event)">Signout </button>
+        </mat-menu> -->
         <p class="user-name">{{username}} </p>
     </div>
     <div class="setttings-section">

@@ -6,7 +6,9 @@ declare let alertify: any;
 })
 export class AlertifyService {
 
-  constructor() { }
+  constructor() {
+    alertify.set('notifier','position', 'top-right');
+  }
 
   confirm( message: string, okCallack: () => any) {
     alertify.confirm(message, (e: any) => {
@@ -31,4 +33,5 @@ export class AlertifyService {
   message(message: string) {
     alertify.message(message);
   }
+
 }

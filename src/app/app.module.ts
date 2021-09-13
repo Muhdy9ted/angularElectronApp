@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {PopoverModule} from "ngx-smart-popover";
 
 
 //modules imports
@@ -22,6 +24,7 @@ import { ContractDetailsComponent } from './desktopUI/contract-details/contract-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { GetContractResolver } from './_shared/resolvers/getContract.resolver';
 import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver'
     LoginComponent,
     ContractsListComponent,
     UserNavbarComponent,
-    ContractDetailsComponent
+    ContractDetailsComponent,
+    SpinnerComponent
 
   ],
   imports: [
@@ -55,9 +59,12 @@ import { GetContractsResolver } from './_shared/resolvers/getContracts.resolver'
     HttpClientModule,
     Ng2SearchPipeModule,
     AngularFirestoreModule,
+    NgxMaterialTimepickerModule,
+    PopoverModule,
   ],
 
   providers: [GetContractResolver, GetContractsResolver],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
