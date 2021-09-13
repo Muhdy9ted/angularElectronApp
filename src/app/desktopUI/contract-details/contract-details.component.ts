@@ -68,7 +68,7 @@ export class ContractDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.firestore.collection('contracts').doc(`${this.route.snapshot.params.contractId}`).valueChanges().subscribe(
       response => {
-        console.log(response)
+        // console.log(response)
         this.contract = response;
         this.isLoading = false;
       }
