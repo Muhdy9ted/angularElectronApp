@@ -11,7 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron:start:fast": "node ./setup-electron.js && node ./setup-cloud-storage-scripts.js && tsc --p electron && electron electron/dist/main.js",
-    "electron": "ng build && node ./setup-electron.js && node ./setup-cloud-storage-scripts.jss && tsc --p electron && electron electron/dist/main.js"
+    "electron": "ng build && node ./setup-electron.js && node ./setup-cloud-storage-scripts.js && tsc --p electron && electron electron/dist/main.js"
   },
   "private": true,
   "dependencies": {
